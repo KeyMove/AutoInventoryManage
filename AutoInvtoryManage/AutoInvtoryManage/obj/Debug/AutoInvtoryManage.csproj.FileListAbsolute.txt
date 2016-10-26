@@ -1,0 +1,10 @@
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\bin\Debug\AutoInvtoryManage.exe.config
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\bin\Debug\AutoInvtoryManage.exe
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\bin\Debug\AutoInvtoryManage.pdb
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.Form1.resources
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.Properties.Resources.resources
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.csproj.GenerateResource.Cache
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.exe
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.pdb
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.csprojResolveAssemblyReference.cache
+C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.AddData.resources
