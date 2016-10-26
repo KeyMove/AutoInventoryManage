@@ -38,7 +38,8 @@ namespace AutoInvtoryManage
             ButtonIndex.AddRange(new Button[]{A1,A2,A3,A4 });
 
             ExeclSheet = new ExeclTools(System.Environment.CurrentDirectory+"\\test.xls");
-            A11dataGridView.DataSource = ExeclSheet.SheetData["库存$"].DefaultView;
+            MainTabView_SelectedIndexChanged(null, null);
+            //A11dataGridView.DataSource = ExeclSheet.SheetData["库存$"].DefaultView;
             A13TreeView.Nodes.Add("所有物料");
         }
 
@@ -101,9 +102,10 @@ namespace AutoInvtoryManage
 
         private void A1Find(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+            DataTable dt = A1Table.Clone();
             string name=A1Table.Columns[0].ToString();
-            dt.Rows.Add(A1Table.Select("[" + name + "]='" + A11IDText.Text+"'"));
+            foreach (DataRow dr in A1Table.Select("[" + name + "] like '" + A11IDText.Text + "'"))
+                dt.Rows.Add(dr.ItemArray);
             A1DataView.DataSource = dt.DefaultView;
         }
 
@@ -111,6 +113,8 @@ namespace AutoInvtoryManage
         {
             List<string> list = new List<string>(data);
             list.Add(DateTime.Now.ToShortDateString().ToString());
+            list.Add("入库");
+            list.Add(" ");
             list.Add(" ");
             list.Add(" ");
             return list.ToArray();
@@ -139,6 +143,39 @@ namespace AutoInvtoryManage
         private void IntInput(object sender, KeyPressEventArgs e)
         {
             WindowTools.IntInput(sender, e);
+        }
+
+        private void A1Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) A1Find(null, null);
+        }
+
+        private void A1Out(object sender, EventArgs e)
+        {
+            if (A1DataView.CurrentRow == null)
+            {
+                MessageBox.Show("请选择一个物料");
+                return;
+            }
+            int count = int.Parse(A1DataView.CurrentRow.Cells["数量"].Value.ToString());
+            int req = int.Parse(A1SelectCountText.Text);
+            if (count < req)
+            {
+                MessageBox.Show("库存数量不足\r\n还缺少"+(req-count)+ A1DataView.CurrentRow.Cells["单位"].Value.ToString());
+                return;
+            }
+            List<string> v = new List<string>();
+            int len = A1DataView.CurrentRow.Cells.Count;
+            for (int i = 0; i < len; i++)
+                v.Add(A11dataGridView.CurrentRow.Cells[i].Value.ToString());
+            v[5] = (count - req).ToString();
+            ExeclSheet.set("库存$", A1DataView.CurrentRow.Index, v.ToArray());
+            v[5] = (req).ToString();
+            v.Add("出库");
+            v.Add(" ");
+            v.Add(" ");
+            v.Add(" ");
+            ExeclSheet.insert("进出库$", v.ToArray());
         }
     }
 }

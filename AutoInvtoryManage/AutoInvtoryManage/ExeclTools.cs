@@ -46,7 +46,7 @@ namespace com.github.KeyMove.Tools
                 }
             }
             GC.Collect();
-
+            connection.Close();
         }
 
         public int insert(string sheet,string[] data)
@@ -65,6 +65,7 @@ namespace com.github.KeyMove.Tools
                 odcb.QuoteSuffix = "]";
                 //adapter.SelectCommand = new OleDbCommand("select * from [" + sheet + "] ", connection);
                 adapter.Update(dt);
+                connection.Close();
                 //StringBuilder sb = new StringBuilder();
                 //foreach (string s in Sheets[sheet])
                 //{
@@ -87,10 +88,28 @@ namespace com.github.KeyMove.Tools
                 //cmd.CommandText = v;
                 //cmd.ExecuteNonQuery();
                 //return new OleDbCommand(v, connection).ExecuteNonQuery();
-                connection.Close();
+                //connection.Close();
                 ////OleDbCommand c = connection.CreateCommand();
                 ////c.CommandText = string.Format("insert into [{0}]({1})values({2})", sheet, title,values);
                 ////return c.ExecuteNonQuery();
+            }
+            return -1;
+        }
+
+        public int set(string sheet,int rows,string[] data)
+        {
+            if (Sheets.ContainsKey(sheet))
+            {
+                List<string> list = Sheets[sheet];
+                DataTable dt = SheetData[sheet];
+                DataRow dr = dt.Rows[rows];
+                for (int i = 0; i < list.Count; i++)
+                    dr[list[i]] = data[i];
+                OleDbDataAdapter adapter = SheetAdapter[sheet];
+                OleDbCommandBuilder odcb = new OleDbCommandBuilder(adapter);
+                odcb.QuotePrefix = "[";
+                odcb.QuoteSuffix = "]";
+                return adapter.Update(dt);
             }
             return -1;
         }

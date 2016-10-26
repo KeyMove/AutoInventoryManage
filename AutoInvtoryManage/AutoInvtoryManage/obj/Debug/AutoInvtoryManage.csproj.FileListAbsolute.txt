@@ -8,3 +8,13 @@ C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\
 C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.pdb
 C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.csprojResolveAssemblyReference.cache
 C:\Users\KeyMove\Desktop\扫码枪\code\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.AddData.resources
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\bin\Debug\AutoInvtoryManage.exe.config
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.exe
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.pdb
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\bin\Debug\AutoInvtoryManage.exe
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\bin\Debug\AutoInvtoryManage.pdb
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.csprojResolveAssemblyReference.cache
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.AddData.resources
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.Form1.resources
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.Properties.Resources.resources
+D:\GitHub\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.csproj.GenerateResource.Cache
