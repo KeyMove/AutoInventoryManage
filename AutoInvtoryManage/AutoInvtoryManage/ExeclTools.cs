@@ -39,6 +39,9 @@ namespace com.github.KeyMove.Tools
             {
                 OleDbDataAdapter adapter;
                 SheetAdapter.Add(s, adapter = new OleDbDataAdapter(new OleDbCommand("select * from [" + s + "] ", tabs)));
+                OleDbCommandBuilder odcb = new OleDbCommandBuilder(adapter);
+                odcb.QuotePrefix = "[";
+                odcb.QuoteSuffix = "]";
                 adapter.Fill(SheetData[s]);
                 foreach (DataColumn c in SheetData[s].Columns)
                 {
@@ -59,13 +62,10 @@ namespace com.github.KeyMove.Tools
                 for (int i = 0; i < list.Count; i++)
                     dr[list[i]] = data[i];
                 dt.Rows.Add(dr);
-                OleDbDataAdapter adapter = SheetAdapter[sheet];
-                OleDbCommandBuilder odcb = new OleDbCommandBuilder(adapter);
-                odcb.QuotePrefix = "[";
-                odcb.QuoteSuffix = "]";
+                //connection.Open();
+                SheetAdapter[sheet].Update(dt);
                 //adapter.SelectCommand = new OleDbCommand("select * from [" + sheet + "] ", connection);
-                adapter.Update(dt);
-                connection.Close();
+                //connection.Close();
                 //StringBuilder sb = new StringBuilder();
                 //foreach (string s in Sheets[sheet])
                 //{
@@ -96,19 +96,16 @@ namespace com.github.KeyMove.Tools
             return -1;
         }
 
-        public int set(string sheet,int rows,string[] data)
+        public int set(string sheet,int rows,string name,string data)
         {
             if (Sheets.ContainsKey(sheet))
             {
-                List<string> list = Sheets[sheet];
                 DataTable dt = SheetData[sheet];
                 DataRow dr = dt.Rows[rows];
-                for (int i = 0; i < list.Count; i++)
-                    dr[list[i]] = data[i];
+                dr[name] = data;
                 OleDbDataAdapter adapter = SheetAdapter[sheet];
-                OleDbCommandBuilder odcb = new OleDbCommandBuilder(adapter);
-                odcb.QuotePrefix = "[";
-                odcb.QuoteSuffix = "]";
+                string sqlstr = string.Format("UPDATE [{0}] SET {1} = {2} WHERE {3} = '{4}'", sheet, name, data, dt.Columns[0].ToString(), dr.ItemArray[0].ToString());
+                adapter.UpdateCommand = new OleDbCommand(sqlstr, connection);
                 return adapter.Update(dt);
             }
             return -1;

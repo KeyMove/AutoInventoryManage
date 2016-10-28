@@ -31,18 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.A2 = new System.Windows.Forms.Button();
-            this.A4 = new System.Windows.Forms.Button();
-            this.A3 = new System.Windows.Forms.Button();
-            this.A1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.MainTabView = new System.Windows.Forms.TabControl();
             this.A11 = new System.Windows.Forms.TabPage();
             this.A11dataGridView = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.A11Out = new System.Windows.Forms.Button();
-            this.A11FindButton = new System.Windows.Forms.Button();
             this.A11IDText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.A11CountText = new System.Windows.Forms.TextBox();
@@ -51,8 +45,6 @@
             this.A12dataGridView = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.A12FindButton = new System.Windows.Forms.Button();
-            this.A12InButton = new System.Windows.Forms.Button();
             this.A12IDText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.A12CountText = new System.Windows.Forms.TextBox();
@@ -63,17 +55,12 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.A13TreeView = new System.Windows.Forms.TreeView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.A13FindButton = new System.Windows.Forms.Button();
-            this.A13RemoveDataButton = new System.Windows.Forms.Button();
-            this.A13EditDataButton = new System.Windows.Forms.Button();
-            this.A13AddDataButton = new System.Windows.Forms.Button();
             this.A13IDText = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.A14 = new System.Windows.Forms.TabPage();
             this.A14dataGridView = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.A14FindButton = new System.Windows.Forms.Button();
             this.A14IDText = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.A15 = new System.Windows.Forms.TabPage();
@@ -86,16 +73,39 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.UseScanView = new System.Windows.Forms.ListBox();
-            this.ScanGunView = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.LinkScanGun = new System.Windows.Forms.Button();
+            this.A15UseScanView = new System.Windows.Forms.ListBox();
+            this.A15ScanGunView = new System.Windows.Forms.ListBox();
+            this.A15RemoveScanGun = new System.Windows.Forms.Button();
+            this.A15LinkScanGun = new System.Windows.Forms.Button();
             this.A21 = new System.Windows.Forms.TabPage();
             this.A22 = new System.Windows.Forms.TabPage();
             this.A31 = new System.Windows.Forms.TabPage();
             this.A41 = new System.Windows.Forms.TabPage();
             this.A42 = new System.Windows.Forms.TabPage();
             this.TableImage = new System.Windows.Forms.ImageList(this.components);
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.A21dataGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.A21IDText = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.A11Out = new System.Windows.Forms.Button();
+            this.A11FindButton = new System.Windows.Forms.Button();
+            this.A12FindButton = new System.Windows.Forms.Button();
+            this.A12InButton = new System.Windows.Forms.Button();
+            this.A13FindButton = new System.Windows.Forms.Button();
+            this.A13RemoveDataButton = new System.Windows.Forms.Button();
+            this.A13EditDataButton = new System.Windows.Forms.Button();
+            this.A13AddDataButton = new System.Windows.Forms.Button();
+            this.A14FindButton = new System.Windows.Forms.Button();
+            this.A21Find = new System.Windows.Forms.Button();
+            this.A21PrintBarCode = new System.Windows.Forms.Button();
+            this.A21CopyBarImage = new System.Windows.Forms.Button();
+            this.A21BarImage = new System.Windows.Forms.PictureBox();
+            this.A2 = new System.Windows.Forms.Button();
+            this.A4 = new System.Windows.Forms.Button();
+            this.A3 = new System.Windows.Forms.Button();
+            this.A1 = new System.Windows.Forms.Button();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.MainTabView.SuspendLayout();
@@ -119,6 +129,12 @@
             this.A15.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.A21.SuspendLayout();
+            this.A22.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.A21dataGridView)).BeginInit();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.A21BarImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -133,70 +149,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(778, 64);
             this.panel1.TabIndex = 0;
-            // 
-            // A2
-            // 
-            this.A2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.A2.FlatAppearance.BorderSize = 0;
-            this.A2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A2.Image = global::AutoInvtoryManage.Properties.Resources.A4;
-            this.A2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.A2.Location = new System.Drawing.Point(83, 4);
-            this.A2.Name = "A2";
-            this.A2.Size = new System.Drawing.Size(73, 54);
-            this.A2.TabIndex = 0;
-            this.A2.Text = "条码管理";
-            this.A2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.A2.UseVisualStyleBackColor = true;
-            this.A2.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // A4
-            // 
-            this.A4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.A4.FlatAppearance.BorderSize = 0;
-            this.A4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A4.Image = global::AutoInvtoryManage.Properties.Resources.A3;
-            this.A4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.A4.Location = new System.Drawing.Point(241, 4);
-            this.A4.Name = "A4";
-            this.A4.Size = new System.Drawing.Size(73, 54);
-            this.A4.TabIndex = 0;
-            this.A4.Text = "库存调度";
-            this.A4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.A4.UseVisualStyleBackColor = true;
-            this.A4.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // A3
-            // 
-            this.A3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.A3.FlatAppearance.BorderSize = 0;
-            this.A3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A3.Image = global::AutoInvtoryManage.Properties.Resources.A2;
-            this.A3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.A3.Location = new System.Drawing.Point(162, 4);
-            this.A3.Name = "A3";
-            this.A3.Size = new System.Drawing.Size(73, 54);
-            this.A3.TabIndex = 0;
-            this.A3.Text = "物料清单";
-            this.A3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.A3.UseVisualStyleBackColor = true;
-            this.A3.Click += new System.EventHandler(this.MenuClick);
-            // 
-            // A1
-            // 
-            this.A1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.A1.FlatAppearance.BorderSize = 0;
-            this.A1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A1.Image = global::AutoInvtoryManage.Properties.Resources.A1;
-            this.A1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.A1.Location = new System.Drawing.Point(4, 4);
-            this.A1.Name = "A1";
-            this.A1.Size = new System.Drawing.Size(73, 54);
-            this.A1.TabIndex = 0;
-            this.A1.Text = "库存管理";
-            this.A1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.A1.UseVisualStyleBackColor = true;
-            this.A1.Click += new System.EventHandler(this.MenuClick);
             // 
             // panel2
             // 
@@ -282,32 +234,6 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "出库信息";
-            // 
-            // A11Out
-            // 
-            this.A11Out.Image = global::AutoInvtoryManage.Properties.Resources.B2;
-            this.A11Out.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A11Out.Location = new System.Drawing.Point(702, 15);
-            this.A11Out.Name = "A11Out";
-            this.A11Out.Size = new System.Drawing.Size(60, 30);
-            this.A11Out.TabIndex = 2;
-            this.A11Out.Text = "出库";
-            this.A11Out.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A11Out.UseVisualStyleBackColor = true;
-            this.A11Out.Click += new System.EventHandler(this.A1Out);
-            // 
-            // A11FindButton
-            // 
-            this.A11FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
-            this.A11FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A11FindButton.Location = new System.Drawing.Point(585, 19);
-            this.A11FindButton.Name = "A11FindButton";
-            this.A11FindButton.Size = new System.Drawing.Size(56, 23);
-            this.A11FindButton.TabIndex = 2;
-            this.A11FindButton.Text = "查找";
-            this.A11FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A11FindButton.UseVisualStyleBackColor = true;
-            this.A11FindButton.Click += new System.EventHandler(this.A1Find);
             // 
             // A11IDText
             // 
@@ -397,31 +323,6 @@
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "入库信息";
-            // 
-            // A12FindButton
-            // 
-            this.A12FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
-            this.A12FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A12FindButton.Location = new System.Drawing.Point(585, 19);
-            this.A12FindButton.Name = "A12FindButton";
-            this.A12FindButton.Size = new System.Drawing.Size(56, 23);
-            this.A12FindButton.TabIndex = 3;
-            this.A12FindButton.Text = "查找";
-            this.A12FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A12FindButton.UseVisualStyleBackColor = true;
-            this.A12FindButton.Click += new System.EventHandler(this.A1Find);
-            // 
-            // A12InButton
-            // 
-            this.A12InButton.Image = global::AutoInvtoryManage.Properties.Resources.B1;
-            this.A12InButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A12InButton.Location = new System.Drawing.Point(702, 15);
-            this.A12InButton.Name = "A12InButton";
-            this.A12InButton.Size = new System.Drawing.Size(60, 30);
-            this.A12InButton.TabIndex = 2;
-            this.A12InButton.Text = "入库";
-            this.A12InButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A12InButton.UseVisualStyleBackColor = true;
             // 
             // A12IDText
             // 
@@ -531,62 +432,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "出库信息";
             // 
-            // A13FindButton
-            // 
-            this.A13FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
-            this.A13FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A13FindButton.Location = new System.Drawing.Point(375, 61);
-            this.A13FindButton.Name = "A13FindButton";
-            this.A13FindButton.Size = new System.Drawing.Size(56, 23);
-            this.A13FindButton.TabIndex = 3;
-            this.A13FindButton.Text = "查找";
-            this.A13FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A13FindButton.UseVisualStyleBackColor = true;
-            this.A13FindButton.Click += new System.EventHandler(this.A1Find);
-            // 
-            // A13RemoveDataButton
-            // 
-            this.A13RemoveDataButton.FlatAppearance.BorderSize = 0;
-            this.A13RemoveDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A13RemoveDataButton.Image = global::AutoInvtoryManage.Properties.Resources.C2;
-            this.A13RemoveDataButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A13RemoveDataButton.Location = new System.Drawing.Point(180, 22);
-            this.A13RemoveDataButton.Name = "A13RemoveDataButton";
-            this.A13RemoveDataButton.Size = new System.Drawing.Size(80, 28);
-            this.A13RemoveDataButton.TabIndex = 2;
-            this.A13RemoveDataButton.Text = "移除物料";
-            this.A13RemoveDataButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A13RemoveDataButton.UseVisualStyleBackColor = true;
-            // 
-            // A13EditDataButton
-            // 
-            this.A13EditDataButton.FlatAppearance.BorderSize = 0;
-            this.A13EditDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A13EditDataButton.Image = global::AutoInvtoryManage.Properties.Resources.C5;
-            this.A13EditDataButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A13EditDataButton.Location = new System.Drawing.Point(94, 22);
-            this.A13EditDataButton.Name = "A13EditDataButton";
-            this.A13EditDataButton.Size = new System.Drawing.Size(80, 28);
-            this.A13EditDataButton.TabIndex = 2;
-            this.A13EditDataButton.Text = "编辑物料";
-            this.A13EditDataButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A13EditDataButton.UseVisualStyleBackColor = true;
-            // 
-            // A13AddDataButton
-            // 
-            this.A13AddDataButton.FlatAppearance.BorderSize = 0;
-            this.A13AddDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A13AddDataButton.Image = global::AutoInvtoryManage.Properties.Resources.C3;
-            this.A13AddDataButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A13AddDataButton.Location = new System.Drawing.Point(8, 22);
-            this.A13AddDataButton.Name = "A13AddDataButton";
-            this.A13AddDataButton.Size = new System.Drawing.Size(80, 28);
-            this.A13AddDataButton.TabIndex = 2;
-            this.A13AddDataButton.Text = "新建物料";
-            this.A13AddDataButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A13AddDataButton.UseVisualStyleBackColor = true;
-            this.A13AddDataButton.Click += new System.EventHandler(this.A13AddDataButton_Click);
-            // 
             // A13IDText
             // 
             this.A13IDText.Location = new System.Drawing.Point(74, 62);
@@ -650,19 +495,6 @@
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "入库信息";
-            // 
-            // A14FindButton
-            // 
-            this.A14FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
-            this.A14FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A14FindButton.Location = new System.Drawing.Point(374, 20);
-            this.A14FindButton.Name = "A14FindButton";
-            this.A14FindButton.Size = new System.Drawing.Size(56, 23);
-            this.A14FindButton.TabIndex = 3;
-            this.A14FindButton.Text = "查找";
-            this.A14FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A14FindButton.UseVisualStyleBackColor = true;
-            this.A14FindButton.Click += new System.EventHandler(this.A1Find);
             // 
             // A14IDText
             // 
@@ -756,10 +588,10 @@
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.UseScanView);
-            this.groupBox1.Controls.Add(this.ScanGunView);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.LinkScanGun);
+            this.groupBox1.Controls.Add(this.A15UseScanView);
+            this.groupBox1.Controls.Add(this.A15ScanGunView);
+            this.groupBox1.Controls.Add(this.A15RemoveScanGun);
+            this.groupBox1.Controls.Add(this.A15LinkScanGun);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(376, 290);
@@ -785,44 +617,47 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "网络中的设备";
             // 
-            // UseScanView
+            // A15UseScanView
             // 
-            this.UseScanView.FormattingEnabled = true;
-            this.UseScanView.ItemHeight = 12;
-            this.UseScanView.Location = new System.Drawing.Point(7, 170);
-            this.UseScanView.Name = "UseScanView";
-            this.UseScanView.Size = new System.Drawing.Size(187, 112);
-            this.UseScanView.TabIndex = 0;
+            this.A15UseScanView.FormattingEnabled = true;
+            this.A15UseScanView.ItemHeight = 12;
+            this.A15UseScanView.Location = new System.Drawing.Point(7, 170);
+            this.A15UseScanView.Name = "A15UseScanView";
+            this.A15UseScanView.Size = new System.Drawing.Size(187, 112);
+            this.A15UseScanView.TabIndex = 0;
             // 
-            // ScanGunView
+            // A15ScanGunView
             // 
-            this.ScanGunView.FormattingEnabled = true;
-            this.ScanGunView.ItemHeight = 12;
-            this.ScanGunView.Location = new System.Drawing.Point(7, 36);
-            this.ScanGunView.Name = "ScanGunView";
-            this.ScanGunView.Size = new System.Drawing.Size(187, 112);
-            this.ScanGunView.TabIndex = 0;
+            this.A15ScanGunView.FormattingEnabled = true;
+            this.A15ScanGunView.ItemHeight = 12;
+            this.A15ScanGunView.Location = new System.Drawing.Point(7, 36);
+            this.A15ScanGunView.Name = "A15ScanGunView";
+            this.A15ScanGunView.Size = new System.Drawing.Size(187, 112);
+            this.A15ScanGunView.TabIndex = 0;
             // 
-            // button1
+            // A15RemoveScanGun
             // 
-            this.button1.Location = new System.Drawing.Point(200, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "移除队列";
-            this.button1.UseVisualStyleBackColor = true;
+            this.A15RemoveScanGun.Location = new System.Drawing.Point(200, 170);
+            this.A15RemoveScanGun.Name = "A15RemoveScanGun";
+            this.A15RemoveScanGun.Size = new System.Drawing.Size(75, 23);
+            this.A15RemoveScanGun.TabIndex = 1;
+            this.A15RemoveScanGun.Text = "移除队列";
+            this.A15RemoveScanGun.UseVisualStyleBackColor = true;
             // 
-            // LinkScanGun
+            // A15LinkScanGun
             // 
-            this.LinkScanGun.Location = new System.Drawing.Point(200, 36);
-            this.LinkScanGun.Name = "LinkScanGun";
-            this.LinkScanGun.Size = new System.Drawing.Size(75, 23);
-            this.LinkScanGun.TabIndex = 1;
-            this.LinkScanGun.Text = "加入队列";
-            this.LinkScanGun.UseVisualStyleBackColor = true;
+            this.A15LinkScanGun.Location = new System.Drawing.Point(200, 36);
+            this.A15LinkScanGun.Name = "A15LinkScanGun";
+            this.A15LinkScanGun.Size = new System.Drawing.Size(75, 23);
+            this.A15LinkScanGun.TabIndex = 1;
+            this.A15LinkScanGun.Text = "加入队列";
+            this.A15LinkScanGun.UseVisualStyleBackColor = true;
+            this.A15LinkScanGun.Click += new System.EventHandler(this.A15LinkScanGun_Click);
             // 
             // A21
             // 
+            this.A21.Controls.Add(this.groupBox10);
+            this.A21.Controls.Add(this.groupBox11);
             this.A21.ImageIndex = 5;
             this.A21.Location = new System.Drawing.Point(4, 26);
             this.A21.Name = "A21";
@@ -833,6 +668,8 @@
             // 
             // A22
             // 
+            this.A22.Controls.Add(this.groupBox9);
+            this.A22.Font = new System.Drawing.Font("宋体", 9F);
             this.A22.ImageIndex = 4;
             this.A22.Location = new System.Drawing.Point(4, 26);
             this.A22.Name = "A22";
@@ -882,6 +719,311 @@
             this.TableImage.Images.SetKeyName(6, "B7.png");
             this.TableImage.Images.SetKeyName(7, "B8.png");
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.A21dataGridView);
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox10.Font = new System.Drawing.Font("宋体", 9F);
+            this.groupBox10.Location = new System.Drawing.Point(0, 157);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(770, 347);
+            this.groupBox10.TabIndex = 6;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "库存列表";
+            // 
+            // A21dataGridView
+            // 
+            this.A21dataGridView.AllowUserToAddRows = false;
+            this.A21dataGridView.AllowUserToDeleteRows = false;
+            this.A21dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.A21dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.A21dataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.A21dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.A21dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.A21dataGridView.Location = new System.Drawing.Point(3, 17);
+            this.A21dataGridView.Name = "A21dataGridView";
+            this.A21dataGridView.ReadOnly = true;
+            this.A21dataGridView.RowTemplate.Height = 23;
+            this.A21dataGridView.Size = new System.Drawing.Size(764, 327);
+            this.A21dataGridView.TabIndex = 1;
+            this.A21dataGridView.Click += new System.EventHandler(this.ASelectRow);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.A21Find);
+            this.groupBox11.Controls.Add(this.A21IDText);
+            this.groupBox11.Controls.Add(this.label11);
+            this.groupBox11.Controls.Add(this.A21PrintBarCode);
+            this.groupBox11.Controls.Add(this.A21CopyBarImage);
+            this.groupBox11.Controls.Add(this.A21BarImage);
+            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox11.Font = new System.Drawing.Font("宋体", 9F);
+            this.groupBox11.Location = new System.Drawing.Point(0, 0);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(770, 157);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "条码";
+            // 
+            // A21IDText
+            // 
+            this.A21IDText.Location = new System.Drawing.Point(393, 20);
+            this.A21IDText.Name = "A21IDText";
+            this.A21IDText.Size = new System.Drawing.Size(295, 21);
+            this.A21IDText.TabIndex = 6;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(328, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 12);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "物料编号:";
+            // 
+            // A11Out
+            // 
+            this.A11Out.Image = global::AutoInvtoryManage.Properties.Resources.B2;
+            this.A11Out.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A11Out.Location = new System.Drawing.Point(702, 15);
+            this.A11Out.Name = "A11Out";
+            this.A11Out.Size = new System.Drawing.Size(60, 30);
+            this.A11Out.TabIndex = 2;
+            this.A11Out.Text = "出库";
+            this.A11Out.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A11Out.UseVisualStyleBackColor = true;
+            this.A11Out.Click += new System.EventHandler(this.A1Out);
+            // 
+            // A11FindButton
+            // 
+            this.A11FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
+            this.A11FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A11FindButton.Location = new System.Drawing.Point(585, 19);
+            this.A11FindButton.Name = "A11FindButton";
+            this.A11FindButton.Size = new System.Drawing.Size(56, 23);
+            this.A11FindButton.TabIndex = 2;
+            this.A11FindButton.Text = "查找";
+            this.A11FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A11FindButton.UseVisualStyleBackColor = true;
+            this.A11FindButton.Click += new System.EventHandler(this.A1Find);
+            // 
+            // A12FindButton
+            // 
+            this.A12FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
+            this.A12FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A12FindButton.Location = new System.Drawing.Point(585, 19);
+            this.A12FindButton.Name = "A12FindButton";
+            this.A12FindButton.Size = new System.Drawing.Size(56, 23);
+            this.A12FindButton.TabIndex = 3;
+            this.A12FindButton.Text = "查找";
+            this.A12FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A12FindButton.UseVisualStyleBackColor = true;
+            this.A12FindButton.Click += new System.EventHandler(this.A1Find);
+            // 
+            // A12InButton
+            // 
+            this.A12InButton.Image = global::AutoInvtoryManage.Properties.Resources.B1;
+            this.A12InButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A12InButton.Location = new System.Drawing.Point(702, 15);
+            this.A12InButton.Name = "A12InButton";
+            this.A12InButton.Size = new System.Drawing.Size(60, 30);
+            this.A12InButton.TabIndex = 2;
+            this.A12InButton.Text = "入库";
+            this.A12InButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A12InButton.UseVisualStyleBackColor = true;
+            this.A12InButton.Click += new System.EventHandler(this.A1In);
+            // 
+            // A13FindButton
+            // 
+            this.A13FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
+            this.A13FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A13FindButton.Location = new System.Drawing.Point(375, 61);
+            this.A13FindButton.Name = "A13FindButton";
+            this.A13FindButton.Size = new System.Drawing.Size(56, 23);
+            this.A13FindButton.TabIndex = 3;
+            this.A13FindButton.Text = "查找";
+            this.A13FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A13FindButton.UseVisualStyleBackColor = true;
+            this.A13FindButton.Click += new System.EventHandler(this.A1Find);
+            // 
+            // A13RemoveDataButton
+            // 
+            this.A13RemoveDataButton.FlatAppearance.BorderSize = 0;
+            this.A13RemoveDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A13RemoveDataButton.Image = global::AutoInvtoryManage.Properties.Resources.C2;
+            this.A13RemoveDataButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A13RemoveDataButton.Location = new System.Drawing.Point(180, 22);
+            this.A13RemoveDataButton.Name = "A13RemoveDataButton";
+            this.A13RemoveDataButton.Size = new System.Drawing.Size(80, 28);
+            this.A13RemoveDataButton.TabIndex = 2;
+            this.A13RemoveDataButton.Text = "移除物料";
+            this.A13RemoveDataButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A13RemoveDataButton.UseVisualStyleBackColor = true;
+            // 
+            // A13EditDataButton
+            // 
+            this.A13EditDataButton.FlatAppearance.BorderSize = 0;
+            this.A13EditDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A13EditDataButton.Image = global::AutoInvtoryManage.Properties.Resources.C5;
+            this.A13EditDataButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A13EditDataButton.Location = new System.Drawing.Point(94, 22);
+            this.A13EditDataButton.Name = "A13EditDataButton";
+            this.A13EditDataButton.Size = new System.Drawing.Size(80, 28);
+            this.A13EditDataButton.TabIndex = 2;
+            this.A13EditDataButton.Text = "编辑物料";
+            this.A13EditDataButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A13EditDataButton.UseVisualStyleBackColor = true;
+            // 
+            // A13AddDataButton
+            // 
+            this.A13AddDataButton.FlatAppearance.BorderSize = 0;
+            this.A13AddDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A13AddDataButton.Image = global::AutoInvtoryManage.Properties.Resources.C3;
+            this.A13AddDataButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A13AddDataButton.Location = new System.Drawing.Point(8, 22);
+            this.A13AddDataButton.Name = "A13AddDataButton";
+            this.A13AddDataButton.Size = new System.Drawing.Size(80, 28);
+            this.A13AddDataButton.TabIndex = 2;
+            this.A13AddDataButton.Text = "新建物料";
+            this.A13AddDataButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A13AddDataButton.UseVisualStyleBackColor = true;
+            this.A13AddDataButton.Click += new System.EventHandler(this.A13AddDataButton_Click);
+            // 
+            // A14FindButton
+            // 
+            this.A14FindButton.Image = global::AutoInvtoryManage.Properties.Resources.C4;
+            this.A14FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A14FindButton.Location = new System.Drawing.Point(374, 20);
+            this.A14FindButton.Name = "A14FindButton";
+            this.A14FindButton.Size = new System.Drawing.Size(56, 23);
+            this.A14FindButton.TabIndex = 3;
+            this.A14FindButton.Text = "查找";
+            this.A14FindButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A14FindButton.UseVisualStyleBackColor = true;
+            this.A14FindButton.Click += new System.EventHandler(this.A1Find);
+            // 
+            // A21Find
+            // 
+            this.A21Find.Image = global::AutoInvtoryManage.Properties.Resources.C4;
+            this.A21Find.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A21Find.Location = new System.Drawing.Point(694, 19);
+            this.A21Find.Name = "A21Find";
+            this.A21Find.Size = new System.Drawing.Size(56, 23);
+            this.A21Find.TabIndex = 7;
+            this.A21Find.Text = "查找";
+            this.A21Find.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A21Find.UseVisualStyleBackColor = true;
+            this.A21Find.Click += new System.EventHandler(this.A2Find);
+            // 
+            // A21PrintBarCode
+            // 
+            this.A21PrintBarCode.Image = global::AutoInvtoryManage.Properties.Resources.B6;
+            this.A21PrintBarCode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A21PrintBarCode.Location = new System.Drawing.Point(254, 49);
+            this.A21PrintBarCode.Name = "A21PrintBarCode";
+            this.A21PrintBarCode.Size = new System.Drawing.Size(56, 23);
+            this.A21PrintBarCode.TabIndex = 4;
+            this.A21PrintBarCode.Text = "打印";
+            this.A21PrintBarCode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A21PrintBarCode.UseVisualStyleBackColor = true;
+            // 
+            // A21CopyBarImage
+            // 
+            this.A21CopyBarImage.Image = global::AutoInvtoryManage.Properties.Resources.B7;
+            this.A21CopyBarImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A21CopyBarImage.Location = new System.Drawing.Point(254, 20);
+            this.A21CopyBarImage.Name = "A21CopyBarImage";
+            this.A21CopyBarImage.Size = new System.Drawing.Size(56, 23);
+            this.A21CopyBarImage.TabIndex = 4;
+            this.A21CopyBarImage.Text = "复制";
+            this.A21CopyBarImage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A21CopyBarImage.UseVisualStyleBackColor = true;
+            this.A21CopyBarImage.Click += new System.EventHandler(this.A21CopyBarImage_Click);
+            // 
+            // A21BarImage
+            // 
+            this.A21BarImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.A21BarImage.Location = new System.Drawing.Point(8, 20);
+            this.A21BarImage.Name = "A21BarImage";
+            this.A21BarImage.Size = new System.Drawing.Size(240, 120);
+            this.A21BarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.A21BarImage.TabIndex = 0;
+            this.A21BarImage.TabStop = false;
+            // 
+            // A2
+            // 
+            this.A2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.A2.FlatAppearance.BorderSize = 0;
+            this.A2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A2.Image = global::AutoInvtoryManage.Properties.Resources.A4;
+            this.A2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.A2.Location = new System.Drawing.Point(83, 4);
+            this.A2.Name = "A2";
+            this.A2.Size = new System.Drawing.Size(73, 54);
+            this.A2.TabIndex = 0;
+            this.A2.Text = "条码管理";
+            this.A2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.A2.UseVisualStyleBackColor = true;
+            this.A2.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // A4
+            // 
+            this.A4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.A4.FlatAppearance.BorderSize = 0;
+            this.A4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A4.Image = global::AutoInvtoryManage.Properties.Resources.A3;
+            this.A4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.A4.Location = new System.Drawing.Point(241, 4);
+            this.A4.Name = "A4";
+            this.A4.Size = new System.Drawing.Size(73, 54);
+            this.A4.TabIndex = 0;
+            this.A4.Text = "库存调度";
+            this.A4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.A4.UseVisualStyleBackColor = true;
+            this.A4.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // A3
+            // 
+            this.A3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.A3.FlatAppearance.BorderSize = 0;
+            this.A3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A3.Image = global::AutoInvtoryManage.Properties.Resources.A2;
+            this.A3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.A3.Location = new System.Drawing.Point(162, 4);
+            this.A3.Name = "A3";
+            this.A3.Size = new System.Drawing.Size(73, 54);
+            this.A3.TabIndex = 0;
+            this.A3.Text = "物料清单";
+            this.A3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.A3.UseVisualStyleBackColor = true;
+            this.A3.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // A1
+            // 
+            this.A1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.A1.FlatAppearance.BorderSize = 0;
+            this.A1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.A1.Image = global::AutoInvtoryManage.Properties.Resources.A1;
+            this.A1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.A1.Location = new System.Drawing.Point(4, 4);
+            this.A1.Name = "A1";
+            this.A1.Size = new System.Drawing.Size(73, 54);
+            this.A1.TabIndex = 0;
+            this.A1.Text = "库存管理";
+            this.A1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.A1.UseVisualStyleBackColor = true;
+            this.A1.Click += new System.EventHandler(this.MenuClick);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox9.Location = new System.Drawing.Point(0, 0);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(770, 265);
+            this.groupBox9.TabIndex = 3;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "条码尺寸";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -921,6 +1063,13 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.A21.ResumeLayout(false);
+            this.A22.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.A21dataGridView)).EndInit();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.A21BarImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -954,10 +1103,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox UseScanView;
-        private System.Windows.Forms.ListBox ScanGunView;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button LinkScanGun;
+        private System.Windows.Forms.ListBox A15UseScanView;
+        private System.Windows.Forms.ListBox A15ScanGunView;
+        private System.Windows.Forms.Button A15RemoveScanGun;
+        private System.Windows.Forms.Button A15LinkScanGun;
         private System.Windows.Forms.DataGridView A11dataGridView;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -993,6 +1142,16 @@
         private System.Windows.Forms.Button A13FindButton;
         private System.Windows.Forms.Button A14FindButton;
         private System.Windows.Forms.Button A13EditDataButton;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button A21PrintBarCode;
+        private System.Windows.Forms.Button A21CopyBarImage;
+        private System.Windows.Forms.PictureBox A21BarImage;
+        private System.Windows.Forms.DataGridView A21dataGridView;
+        private System.Windows.Forms.Button A21Find;
+        private System.Windows.Forms.TextBox A21IDText;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox9;
     }
 }
 
