@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace AutoInvtoryManage
             InitializeComponent();
         }
 
+        Bitmap Printmap;
+        Graphics Page;
 
         ESPUDP Client = new ESPUDP();
         List<UserInfo> ScanGunList = new List<UserInfo>();
+
+        BarCodePrint print;
 
         int RowIndex = -1;
         void InitESPUDP()
@@ -146,6 +151,38 @@ namespace AutoInvtoryManage
             A13TreeView.Nodes.Add("所有物料");
             InitESPUDP();
             Code93.Font = Font;
+            Printmap = new Bitmap(210, 297);
+            Page = Graphics.FromImage(Printmap);
+            Page.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            Page.PageUnit = GraphicsUnit.Millimeter;
+            Page.PageScale = 1;            
+            pictureBox1.Image = Printmap;
+            PrintInit();
+        }
+
+        void testprint(Graphics g)
+        {
+
+        }
+
+        void PrintInit()
+        {
+            printDocument1.PrintPage += PrintDocument1_PrintPage;
+            printPreviewDialog1.Document = printDocument1;
+            printDialog1.Document = printDocument1;
+            A21PrintView.Document = printDocument1;
+            //printDocument1.PrintController = new StandardPrintController();
+            print = new DefBarCode();
+        }
+
+        private void PrintDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+            int pos = int.Parse(A21PrintPos.Text);
+            e.Graphics.PageUnit = GraphicsUnit.Millimeter;
+            //testprint(e.Graphics);
+            print.Draw(e.Graphics, pos, A1DataView.CurrentRow.Cells["物料编号"].Value.ToString(), A1DataView.CurrentRow.Cells["物料编号"].Value.ToString(), A1DataView.CurrentRow.Cells["物料名称"].Value.ToString() + A1DataView.CurrentRow.Cells["规格型号"].Value.ToString());
+            
         }
 
         private void MenuClick(object sender, EventArgs e)
@@ -240,7 +277,7 @@ namespace AutoInvtoryManage
         string[] DataToRealTime(string[] data)
         {
             List<string> list = new List<string>(data);
-            list.Add(DateTime.Now.ToShortDateString().ToString());
+            list.Add(DateTime.Now.ToString("yyyy年MM月dd日HH:mm:ss") );
             list.Add("入库");
             list.Add("新建库存");
             list.Add(" ");
@@ -313,7 +350,7 @@ namespace AutoInvtoryManage
             }
             ExeclSheet.set("库存$", A1DataView.CurrentRow.Index,"数量", v[5]);
             v[5] = (req).ToString();
-            v.Add(DateTime.Now.ToShortDateString().ToString());
+            v.Add(DateTime.Now.ToString("yyyy年MM月dd日HH:mm:ss") );
             v.Add("出库");
             v.AddRange(MessageWindow.Data);
             ExeclSheet.insert("出入库$", v.ToArray());
@@ -332,7 +369,7 @@ namespace AutoInvtoryManage
                     v.Add(s.ToString());
                 ExeclSheet.set("库存$", index, "数量", (req + count).ToString());
                 v[5] = (req).ToString();
-                v.Add(DateTime.Now.ToShortDateString().ToString());
+                v.Add(DateTime.Now.ToString("yyyy年MM月dd日HH:mm:ss") );
                 v.Add("入库");
                 v.Add("扫码枪入库");
                 v.Add("");
@@ -356,7 +393,7 @@ namespace AutoInvtoryManage
                 v.Add(s.ToString());
             ExeclSheet.set("库存$", index, "数量", (count - req).ToString());
             v[5] = (req).ToString();
-            v.Add(DateTime.Now.ToShortDateString().ToString());
+            v.Add(DateTime.Now.ToString("yyyy年MM月dd日HH:mm:ss") );
             v.Add("出库");
             v.Add("扫码枪出库");
             v.Add("");
@@ -397,7 +434,7 @@ namespace AutoInvtoryManage
             }
             ExeclSheet.set("库存$", A1DataView.CurrentRow.Index, "数量", (req+count).ToString());
             v[5] = (req).ToString();
-            v.Add(DateTime.Now.ToShortDateString().ToString());
+            v.Add(DateTime.Now.ToString("yyyy年MM月dd日HH:mm:ss") );
             v.Add("入库");
             v.AddRange(MessageWindow.Data);
             ExeclSheet.insert("出入库$", v.ToArray());
@@ -425,13 +462,25 @@ namespace AutoInvtoryManage
             if (RowIndex != A1DataView.CurrentRow.Index)
             {
                 RowIndex = A1DataView.CurrentRow.Index;
-                A21BarImage.Image = Code93.BarCode(A1DataView.CurrentRow.Cells["物料编号"].Value.ToString());
+                A21BarImage.Image = Code93.BarCode(A1DataView.CurrentRow.Cells["物料编号"].Value.ToString(), A1DataView.CurrentRow.Cells["物料编号"].Value.ToString(), A1DataView.CurrentRow.Cells["物料名称"].Value.ToString() + A1DataView.CurrentRow.Cells["规格型号"].Value.ToString());
+                A21PrintView.Zoom = 1.5;
+                A21PrintView.Show();
             }
         }
 
         private void A21CopyBarImage_Click(object sender, EventArgs e)
         {
             Clipboard.SetData(DataFormats.Bitmap, A21BarImage.Image);
+        }
+
+        private void A21PrePrint_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void A21PrintBarCode_Click(object sender, EventArgs e)
+        {
+            printDocument1.Print();
         }
     }
 }

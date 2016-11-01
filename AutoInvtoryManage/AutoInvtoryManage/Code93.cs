@@ -136,6 +136,20 @@ namespace com.github.KeyMove.Tools
             return map;
         }
 
+        public static void DrawToGraphics(string str,Graphics Draw,float x,float y, float w, float h)
+        {
+            str=Code47toEncode(AddCheckDigits(ASCIItoCode47(str)));
+            Pen p = new Pen(Color.Black, w);
+            for (int i = 0; i < str.Length; i++)
+                if (str[i] == '1')
+                    Draw.DrawLine(p, i*w + x, y, i*w + x, y + h);
+        }
+
+        public static int getLength(string value)
+        {
+            return Code47toEncode(AddCheckDigits(ASCIItoCode47(value))).Length;
+        }
+
         public static Bitmap BarCode(string str,int w,int h,string message,string title)
         {
             return ASCIItoBitmap(Code47toEncode(AddCheckDigits(ASCIItoCode47(str))), w, h,message,title);
