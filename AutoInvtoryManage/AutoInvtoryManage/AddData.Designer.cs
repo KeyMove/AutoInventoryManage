@@ -44,6 +44,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.T5 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.T8 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // T1
@@ -53,6 +55,7 @@
             this.T1.ReadOnly = true;
             this.T1.Size = new System.Drawing.Size(185, 21);
             this.T1.TabIndex = 0;
+            this.T1.Visible = false;
             this.T1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntInput);
             // 
             // label1
@@ -63,6 +66,7 @@
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "物料编号:";
+            this.label1.Visible = false;
             // 
             // CSID
             // 
@@ -73,6 +77,7 @@
             this.CSID.TabIndex = 1;
             this.CSID.Text = "自定义物料编号";
             this.CSID.UseVisualStyleBackColor = true;
+            this.CSID.Visible = false;
             this.CSID.CheckedChanged += new System.EventHandler(this.CSID_CheckedChanged);
             // 
             // T2
@@ -178,6 +183,7 @@
             // 
             // T5
             // 
+            this.T5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.T5.FormattingEnabled = true;
             this.T5.Items.AddRange(new object[] {
             "PCS"});
@@ -185,16 +191,38 @@
             this.T5.Name = "T5";
             this.T5.Size = new System.Drawing.Size(185, 20);
             this.T5.TabIndex = 5;
-            this.T5.Text = "PCS";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 285);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 12);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "储存位置:";
+            // 
+            // T8
+            // 
+            this.T8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.T8.FormattingEnabled = true;
+            this.T8.Items.AddRange(new object[] {
+            "常规储存",
+            "先进先出"});
+            this.T8.Location = new System.Drawing.Point(77, 282);
+            this.T8.Name = "T8";
+            this.T8.Size = new System.Drawing.Size(185, 20);
+            this.T8.TabIndex = 5;
             // 
             // AddData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 344);
+            this.Controls.Add(this.T8);
             this.Controls.Add(this.T5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -234,5 +262,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox T5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox T8;
     }
 }

@@ -91,41 +91,44 @@
             this.A15RemoveScanGun = new System.Windows.Forms.Button();
             this.A15LinkScanGun = new System.Windows.Forms.Button();
             this.A21 = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.A21BarPrintType = new System.Windows.Forms.ComboBox();
+            this.A21PrintPos = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.A21dataGridView = new System.Windows.Forms.DataGridView();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.A21Find = new System.Windows.Forms.Button();
             this.A21IDText = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.A21PrePrint = new System.Windows.Forms.Button();
             this.A21PrintBarCode = new System.Windows.Forms.Button();
             this.A21CopyBarImage = new System.Windows.Forms.Button();
             this.A21BarImage = new System.Windows.Forms.PictureBox();
             this.A22 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.A31 = new System.Windows.Forms.TabPage();
             this.A41 = new System.Windows.Forms.TabPage();
             this.A42 = new System.Windows.Forms.TabPage();
             this.TableImage = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.A21PrintView = new System.Windows.Forms.PrintPreviewControl();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.A21PrintPos = new System.Windows.Forms.TextBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.A21BarPrintType = new System.Windows.Forms.ComboBox();
-            this.A21PrePrint = new System.Windows.Forms.Button();
+            this.A21PrintView = new System.Windows.Forms.Panel();
+            this.A21AddPos = new System.Windows.Forms.Button();
+            this.A21ClearPos = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.MainTabView.SuspendLayout();
@@ -150,16 +153,17 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.A21.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.A21dataGridView)).BeginInit();
-            this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.A21BarImage)).BeginInit();
             this.A22.SuspendLayout();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox12.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -876,14 +880,74 @@
             this.A21.Text = "条码打印";
             this.A21.UseVisualStyleBackColor = true;
             // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.A21PrintView);
+            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox12.Font = new System.Drawing.Font("宋体", 9F);
+            this.groupBox12.Location = new System.Drawing.Point(332, 0);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(438, 504);
+            this.groupBox12.TabIndex = 9;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "预览";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.groupBox10);
+            this.groupBox11.Controls.Add(this.panel6);
+            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox11.Font = new System.Drawing.Font("宋体", 9F);
+            this.groupBox11.Location = new System.Drawing.Point(0, 0);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(332, 504);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "条码";
+            // 
+            // A21BarPrintType
+            // 
+            this.A21BarPrintType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.A21BarPrintType.FormattingEnabled = true;
+            this.A21BarPrintType.Location = new System.Drawing.Point(66, 168);
+            this.A21BarPrintType.Name = "A21BarPrintType";
+            this.A21BarPrintType.Size = new System.Drawing.Size(100, 20);
+            this.A21BarPrintType.TabIndex = 10;
+            // 
+            // A21PrintPos
+            // 
+            this.A21PrintPos.Location = new System.Drawing.Point(66, 146);
+            this.A21PrintPos.Name = "A21PrintPos";
+            this.A21PrintPos.Size = new System.Drawing.Size(100, 21);
+            this.A21PrintPos.TabIndex = 9;
+            this.A21PrintPos.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 171);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 12);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "模板:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 150);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 12);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "打印位置:";
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.A21dataGridView);
-            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox10.Font = new System.Drawing.Font("宋体", 9F);
-            this.groupBox10.Location = new System.Drawing.Point(3, 205);
+            this.groupBox10.Location = new System.Drawing.Point(3, 219);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(326, 296);
+            this.groupBox10.Size = new System.Drawing.Size(326, 282);
             this.groupBox10.TabIndex = 6;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "库存列表";
@@ -901,38 +965,15 @@
             this.A21dataGridView.Name = "A21dataGridView";
             this.A21dataGridView.ReadOnly = true;
             this.A21dataGridView.RowTemplate.Height = 23;
-            this.A21dataGridView.Size = new System.Drawing.Size(320, 276);
+            this.A21dataGridView.Size = new System.Drawing.Size(320, 262);
             this.A21dataGridView.TabIndex = 1;
             this.A21dataGridView.Click += new System.EventHandler(this.ASelectRow);
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.A21BarPrintType);
-            this.groupBox11.Controls.Add(this.A21PrintPos);
-            this.groupBox11.Controls.Add(this.label13);
-            this.groupBox11.Controls.Add(this.label12);
-            this.groupBox11.Controls.Add(this.groupBox10);
-            this.groupBox11.Controls.Add(this.A21Find);
-            this.groupBox11.Controls.Add(this.A21IDText);
-            this.groupBox11.Controls.Add(this.label11);
-            this.groupBox11.Controls.Add(this.A21PrePrint);
-            this.groupBox11.Controls.Add(this.A21PrintBarCode);
-            this.groupBox11.Controls.Add(this.A21CopyBarImage);
-            this.groupBox11.Controls.Add(this.A21BarImage);
-            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox11.Font = new System.Drawing.Font("宋体", 9F);
-            this.groupBox11.Location = new System.Drawing.Point(0, 0);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(332, 504);
-            this.groupBox11.TabIndex = 2;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "条码";
             // 
             // A21Find
             // 
             this.A21Find.Image = global::AutoInvtoryManage.Properties.Resources.C4;
             this.A21Find.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A21Find.Location = new System.Drawing.Point(254, 17);
+            this.A21Find.Location = new System.Drawing.Point(251, 1);
             this.A21Find.Name = "A21Find";
             this.A21Find.Size = new System.Drawing.Size(56, 23);
             this.A21Find.TabIndex = 7;
@@ -943,7 +984,7 @@
             // 
             // A21IDText
             // 
-            this.A21IDText.Location = new System.Drawing.Point(81, 19);
+            this.A21IDText.Location = new System.Drawing.Point(78, 3);
             this.A21IDText.Name = "A21IDText";
             this.A21IDText.Size = new System.Drawing.Size(167, 21);
             this.A21IDText.TabIndex = 6;
@@ -951,17 +992,30 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 22);
+            this.label11.Location = new System.Drawing.Point(13, 6);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 12);
             this.label11.TabIndex = 5;
             this.label11.Text = "物料编号:";
             // 
+            // A21PrePrint
+            // 
+            this.A21PrePrint.Image = global::AutoInvtoryManage.Properties.Resources.C4;
+            this.A21PrePrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A21PrePrint.Location = new System.Drawing.Point(251, 88);
+            this.A21PrePrint.Name = "A21PrePrint";
+            this.A21PrePrint.Size = new System.Drawing.Size(56, 23);
+            this.A21PrePrint.TabIndex = 4;
+            this.A21PrePrint.Text = "预览";
+            this.A21PrePrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A21PrePrint.UseVisualStyleBackColor = true;
+            this.A21PrePrint.Click += new System.EventHandler(this.A21PrePrint_Click);
+            // 
             // A21PrintBarCode
             // 
             this.A21PrintBarCode.Image = global::AutoInvtoryManage.Properties.Resources.B6;
             this.A21PrintBarCode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A21PrintBarCode.Location = new System.Drawing.Point(254, 75);
+            this.A21PrintBarCode.Location = new System.Drawing.Point(251, 59);
             this.A21PrintBarCode.Name = "A21PrintBarCode";
             this.A21PrintBarCode.Size = new System.Drawing.Size(56, 23);
             this.A21PrintBarCode.TabIndex = 4;
@@ -974,7 +1028,7 @@
             // 
             this.A21CopyBarImage.Image = global::AutoInvtoryManage.Properties.Resources.B7;
             this.A21CopyBarImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A21CopyBarImage.Location = new System.Drawing.Point(254, 46);
+            this.A21CopyBarImage.Location = new System.Drawing.Point(251, 30);
             this.A21CopyBarImage.Name = "A21CopyBarImage";
             this.A21CopyBarImage.Size = new System.Drawing.Size(56, 23);
             this.A21CopyBarImage.TabIndex = 4;
@@ -986,7 +1040,7 @@
             // A21BarImage
             // 
             this.A21BarImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.A21BarImage.Location = new System.Drawing.Point(8, 46);
+            this.A21BarImage.Location = new System.Drawing.Point(5, 30);
             this.A21BarImage.Name = "A21BarImage";
             this.A21BarImage.Size = new System.Drawing.Size(240, 110);
             this.A21BarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1017,6 +1071,109 @@
             this.groupBox9.TabIndex = 3;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "条码尺寸";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(666, 429);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.button6);
+            this.groupBox13.Controls.Add(this.button8);
+            this.groupBox13.Controls.Add(this.button7);
+            this.groupBox13.Controls.Add(this.button5);
+            this.groupBox13.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox13.Location = new System.Drawing.Point(0, 55);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(98, 449);
+            this.groupBox13.TabIndex = 4;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "工具";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(42, 20);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(28, 23);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "□";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(42, 49);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(28, 23);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "✎";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(8, 49);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(28, 23);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "/";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(8, 20);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(28, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "○";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.button4);
+            this.groupBox14.Controls.Add(this.button1);
+            this.groupBox14.Controls.Add(this.button3);
+            this.groupBox14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox14.Location = new System.Drawing.Point(0, 0);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(770, 55);
+            this.groupBox14.TabIndex = 5;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "菜单";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(597, 20);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(51, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "套用";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(654, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "✔ 套用";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(711, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(51, 23);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "✘ 清除";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // A31
             // 
@@ -1059,16 +1216,6 @@
             this.TableImage.Images.SetKeyName(6, "B7.png");
             this.TableImage.Images.SetKeyName(7, "B8.png");
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(666, 429);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // printPreviewDialog1
             // 
             this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -1089,159 +1236,54 @@
             this.A21PrintView.Location = new System.Drawing.Point(3, 17);
             this.A21PrintView.Name = "A21PrintView";
             this.A21PrintView.Size = new System.Drawing.Size(432, 484);
-            this.A21PrintView.TabIndex = 8;
+            this.A21PrintView.TabIndex = 0;
             // 
-            // groupBox12
+            // A21AddPos
             // 
-            this.groupBox12.Controls.Add(this.A21PrintView);
-            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox12.Font = new System.Drawing.Font("宋体", 9F);
-            this.groupBox12.Location = new System.Drawing.Point(332, 0);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(438, 504);
-            this.groupBox12.TabIndex = 9;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "预览";
+            this.A21AddPos.Image = global::AutoInvtoryManage.Properties.Resources.C3;
+            this.A21AddPos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A21AddPos.Location = new System.Drawing.Point(172, 144);
+            this.A21AddPos.Name = "A21AddPos";
+            this.A21AddPos.Size = new System.Drawing.Size(56, 23);
+            this.A21AddPos.TabIndex = 4;
+            this.A21AddPos.Text = "设置";
+            this.A21AddPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A21AddPos.UseVisualStyleBackColor = true;
+            this.A21AddPos.Click += new System.EventHandler(this.A21AddPos_Click);
             // 
-            // label12
+            // A21ClearPos
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 166);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 12);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "打印位置:";
+            this.A21ClearPos.Image = global::AutoInvtoryManage.Properties.Resources.C2;
+            this.A21ClearPos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.A21ClearPos.Location = new System.Drawing.Point(172, 166);
+            this.A21ClearPos.Name = "A21ClearPos";
+            this.A21ClearPos.Size = new System.Drawing.Size(56, 23);
+            this.A21ClearPos.TabIndex = 4;
+            this.A21ClearPos.Text = "清除";
+            this.A21ClearPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.A21ClearPos.UseVisualStyleBackColor = true;
+            this.A21ClearPos.Click += new System.EventHandler(this.A21ClearPos_Click);
             // 
-            // A21PrintPos
+            // panel6
             // 
-            this.A21PrintPos.Location = new System.Drawing.Point(69, 162);
-            this.A21PrintPos.Name = "A21PrintPos";
-            this.A21PrintPos.Size = new System.Drawing.Size(100, 21);
-            this.A21PrintPos.TabIndex = 9;
-            this.A21PrintPos.Text = "0";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.button6);
-            this.groupBox13.Controls.Add(this.button8);
-            this.groupBox13.Controls.Add(this.button7);
-            this.groupBox13.Controls.Add(this.button5);
-            this.groupBox13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox13.Location = new System.Drawing.Point(0, 55);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(98, 449);
-            this.groupBox13.TabIndex = 4;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "工具";
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.button4);
-            this.groupBox14.Controls.Add(this.button1);
-            this.groupBox14.Controls.Add(this.button3);
-            this.groupBox14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox14.Location = new System.Drawing.Point(0, 0);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(770, 55);
-            this.groupBox14.TabIndex = 5;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "菜单";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(654, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "✔ 套用";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(711, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(51, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "✘ 清除";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(597, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(51, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "套用";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(8, 20);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(28, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "○";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(42, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(28, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "□";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(8, 49);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(28, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "/";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(42, 49);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(28, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "✎";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(28, 187);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 12);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "模板:";
-            // 
-            // A21BarPrintType
-            // 
-            this.A21BarPrintType.FormattingEnabled = true;
-            this.A21BarPrintType.Location = new System.Drawing.Point(69, 184);
-            this.A21BarPrintType.Name = "A21BarPrintType";
-            this.A21BarPrintType.Size = new System.Drawing.Size(100, 20);
-            this.A21BarPrintType.TabIndex = 10;
-            // 
-            // A21PrePrint
-            // 
-            this.A21PrePrint.Image = global::AutoInvtoryManage.Properties.Resources.C4;
-            this.A21PrePrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.A21PrePrint.Location = new System.Drawing.Point(254, 104);
-            this.A21PrePrint.Name = "A21PrePrint";
-            this.A21PrePrint.Size = new System.Drawing.Size(56, 23);
-            this.A21PrePrint.TabIndex = 4;
-            this.A21PrePrint.Text = "预览";
-            this.A21PrePrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.A21PrePrint.UseVisualStyleBackColor = true;
-            this.A21PrePrint.Click += new System.EventHandler(this.A21PrePrint_Click);
+            this.panel6.Controls.Add(this.A21IDText);
+            this.panel6.Controls.Add(this.A21BarPrintType);
+            this.panel6.Controls.Add(this.A21BarImage);
+            this.panel6.Controls.Add(this.A21PrintPos);
+            this.panel6.Controls.Add(this.A21CopyBarImage);
+            this.panel6.Controls.Add(this.label13);
+            this.panel6.Controls.Add(this.A21PrintBarCode);
+            this.panel6.Controls.Add(this.label12);
+            this.panel6.Controls.Add(this.A21PrePrint);
+            this.panel6.Controls.Add(this.A21AddPos);
+            this.panel6.Controls.Add(this.A21Find);
+            this.panel6.Controls.Add(this.A21ClearPos);
+            this.panel6.Controls.Add(this.label11);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(3, 17);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(326, 202);
+            this.panel6.TabIndex = 11;
             // 
             // Form1
             // 
@@ -1283,17 +1325,18 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.A21.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.A21dataGridView)).EndInit();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.A21BarImage)).EndInit();
             this.A22.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox12.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1381,7 +1424,6 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.PrintPreviewControl A21PrintView;
         private System.Windows.Forms.TextBox A21PrintPos;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox13;
@@ -1396,6 +1438,10 @@
         private System.Windows.Forms.ComboBox A21BarPrintType;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button A21PrePrint;
+        private System.Windows.Forms.Panel A21PrintView;
+        private System.Windows.Forms.Button A21AddPos;
+        private System.Windows.Forms.Button A21ClearPos;
+        private System.Windows.Forms.Panel panel6;
     }
 }
 

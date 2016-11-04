@@ -15,6 +15,8 @@ namespace AutoInvtoryManage
         public AddData()
         {
             InitializeComponent();
+            T5.SelectedIndex = 0;
+            T8.SelectedIndex = 0;
         }
         protected override void OnShown(EventArgs e)
         {
@@ -33,7 +35,7 @@ namespace AutoInvtoryManage
 
         public string[] Data
         {
-            get { return new string[] { T1.Text,T2.Text,T3.Text,T4.Text,T5.Text,T6.Text,T7.Text }; }
+            get { return new string[] { /*T1.Text,*/T2.Text,T3.Text,T4.Text,T5.Text,T6.Text,T7.Text,T8.Text }; }
         }
 
         private void CSID_CheckedChanged(object sender, EventArgs e)

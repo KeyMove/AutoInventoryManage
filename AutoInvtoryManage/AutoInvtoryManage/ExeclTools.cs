@@ -111,6 +111,104 @@ namespace com.github.KeyMove.Tools
             return -1;
         }
 
+        public int set(string sheet, DataRow dr,string colname, string name, string data)
+        {
+            if (Sheets.ContainsKey(sheet))
+            {
+                DataTable dt = SheetData[sheet];
+                dr[name] = data;
+                OleDbDataAdapter adapter = SheetAdapter[sheet];
+                string sqlstr = string.Format("UPDATE [{0}] SET {1} = '{2}' WHERE {3} = '{4}'", sheet, name, data,colname,dr[colname].ToString());
+                adapter.UpdateCommand = new OleDbCommand(sqlstr, connection);
+                return adapter.Update(dt);
+            }
+            return -1;
+        }
+
+        public int set(string sheet, DataRow dr, string colname, string[] data)
+        {
+            if (Sheets.ContainsKey(sheet))
+            {
+                DataTable dt = SheetData[sheet];
+                OleDbDataAdapter adapter = SheetAdapter[sheet];
+                StringBuilder sb = new StringBuilder();
+                int len = dt.Columns.Count;
+                string colvalue = dr[colname].ToString();
+                for (int i = 0; i < len; i++)
+                {
+                    dr[dt.Columns[i]] = data[i];
+                    sb.Append(dt.Columns[i].ToString());
+                    sb.Append("='");
+                    sb.Append(data[i]);
+                    sb.Append("'");
+                    if ((len - 1) != i)
+                        sb.Append(',');
+                }
+                string sqlstr = string.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", sheet, sb.ToString(), colname, colvalue);
+                adapter.UpdateCommand = new OleDbCommand(sqlstr, connection);
+                return adapter.Update(dt);
+            }
+            return -1;
+        }
+
+        //public int set(string sheet, int rows, string name, string data)
+        //{
+        //    if (Sheets.ContainsKey(sheet))
+        //    {
+        //        DataTable dt = SheetData[sheet];
+        //        DataRow dr = dt.Rows[rows];
+        //        dr[name] = data;
+        //        OleDbDataAdapter adapter = SheetAdapter[sheet];
+        //        string sqlstr = string.Format("UPDATE [{0}] SET {1} = {2} WHERE {3} = '{4}'", sheet, name, data, dt.Columns[0].ToString(), dr.ItemArray[0].ToString());
+        //        adapter.UpdateCommand = new OleDbCommand(sqlstr, connection);
+        //        return adapter.Update(dt);
+        //    }
+        //    return -1;
+        //}
+
+        public int remove(string sheet,int rows,string colname)
+        {
+            if (Sheets.ContainsKey(sheet))
+            {
+                DataTable dt = SheetData[sheet];
+                DataRow dr = dt.Rows[rows];
+                OleDbDataAdapter adapter = SheetAdapter[sheet];
+                StringBuilder sb = new StringBuilder();
+                int len = dt.Columns.Count;
+                string colvalue = dr[colname].ToString();
+                for (int i = 0; i < len; i++)
+                {
+                    dr[dt.Columns[i]] = null;
+                    sb.Append(dt.Columns[i].ToString());
+                    sb.Append("=NULL");
+                    if((len-1)!=i)
+                        sb.Append(',');
+                }
+                string sqlstr = string.Format("UPDATE [{0}] SET {1} WHERE {2} = '{3}'", sheet, sb.ToString(), colname, colvalue);
+                adapter.UpdateCommand = new OleDbCommand(sqlstr, connection);
+                return adapter.Update(dt);
+            }
+            return -1;
+        }
+
+        public DataRow[] find(string sheet,string colname,string name)
+        {
+            if (Sheets.ContainsKey(sheet))
+            {
+                return SheetData[sheet].Select("[" + colname + "] like '" + name + "'");
+            }
+            return null;
+        }
+
+        public DataRow[] find(string sheet, string colname, string name,string sortname)
+        {
+            if (Sheets.ContainsKey(sheet))
+            {
+                return SheetData[sheet].Select("[" + colname + "] like '" + name + "'",sortname+" ASC");
+            }
+            return null;
+        }
+
         public void get(string sheet,string title,int row)
         {
 
