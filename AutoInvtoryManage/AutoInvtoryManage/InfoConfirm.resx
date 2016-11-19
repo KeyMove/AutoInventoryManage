@@ -117,4 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAEsgAABLIAAAAAAAAAAA
+        AAB2s/gXm8/8U7Ph/1mx4P9YseD/WLHg/1ix4P9YseD/WLHg/1ix4P9YseD/WLHg/1ix4P9Ys+H/WZvP
+        /FN2s/gXnND9U5HH+/Gn2P75suH/+bLh//my4f/5suH/+bLh//my4f/5suH/+bLh//my4f/5suH/+ajZ
+        /vmRx/vym8/8U7Ph/1mo2f75kcj7/6HT/f+k1v7/pNb+/6TW/v+k1v7/pNb+/6TW/v+k1v7/pNb+/6HT
+        /f+RyPv/qNn++bPh/1mx4P9YsuH/+aHU/f+Lw/v/ms78/5rO/P+azvz/ms78/5rO/P+azvz/ms78/5rP
+        /P+Mw/v/odP9/7Lh//mx4P9YseD/WLLh//ml1v7/mc78/7Hg//+w4P//sOD//7Dg//+w4P//sOD//7Dg
+        //+x4P//mc78/6TW/v+y4f/5seD/WLHg/1iy4f/5pdb+/4jB+v+Uyvz/lMr8/5TK/P+Uyvz/lMr8/5TK
+        /P+Uyvz/lMr8/4jB+v+k1v7/suH/+bHg/1ix4P9YsuH/+aTW/v+YzPz/r97//67e//+u3v//rt7//67e
+        //+u3v//rt7//6/e//+Yzfz/pNb+/7Lh//mx4P9YseD/WLLh//ml1v7/j8b7/5/S/f+f0v3/n9L9/5/S
+        /f+f0v3/n9L9/5/S/f+f0v3/j8b7/6TW/v+y4f/5seD/WLHg/1iy4f/5pdb+/4/G+/+g0/3/n9L9/5/S
+        /f+f0v3/n9L9/5/S/f+f0v3/oNP9/4/G+/+k1v7/suH/+bHg/1ix4P9YsuH/+aTW/v+XzPz/rt7//67d
+        //+u3f//rt3//67d//+u3f//rt3//67e//+Yzfz/pNb+/7Lh//mx4P9YseD/WLLh//ml1v7/iMH6/5TK
+        /P+Uyvz/lMr8/5TK/P+Uyvz/lMr8/5TK/P+Uyvz/iMH6/6TW/v+y4f/5seD/WLHg/1iy4f/5pdb+/5nO
+        /P+x4P//seD//7Hg//+x4P//seD//7Hg//+x4P//seD//5rO/P+k1v7/suH/+bHg/1ix4P9YsuH/+aHU
+        /f+Lw/v/ms78/5nO/P+Zzvz/mc78/5nO/P+Zzvz/mc78/5rO/P+Lw/v/odP9/7Lh//mx4P9Ys+H/WajZ
+        /vmRyPv/odT9/6XW/v+k1v7/pNb+/6TW/v+k1v7/pNb+/6TW/v+l1v7/odT9/5HI+/+n2P75s+H/WZvP
+        /VKRx/vxqNn++bLh//my4f/5suH/+bLh//my4f/5suH/+bLh//my4f/5suH/+bLh//mo2f75kcf78ZvP
+        /FN2s/gWm8/9UrPh/1mx4P9YseD/WLHg/1ix4P9YseD/WLHg/1ix4P9YseD/WLHg/1ix4P9Ys+H/WZzQ
+        /VN2s/gXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAA==
+</value>
+  </data>
 </root>

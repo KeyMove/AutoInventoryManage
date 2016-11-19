@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace com.github.KeyMove.Tools
 {
@@ -52,7 +50,7 @@ namespace com.github.KeyMove.Tools
             connection.Close();
         }
 
-        public int insert(string sheet,string[] data)
+        public DataRow insert(string sheet,string[] data)
         {
             if (Sheets.ContainsKey(sheet))
             {
@@ -64,6 +62,7 @@ namespace com.github.KeyMove.Tools
                 dt.Rows.Add(dr);
                 //connection.Open();
                 SheetAdapter[sheet].Update(dt);
+                return dr;
                 //adapter.SelectCommand = new OleDbCommand("select * from [" + sheet + "] ", connection);
                 //connection.Close();
                 //StringBuilder sb = new StringBuilder();
@@ -93,7 +92,7 @@ namespace com.github.KeyMove.Tools
                 ////c.CommandText = string.Format("insert into [{0}]({1})values({2})", sheet, title,values);
                 ////return c.ExecuteNonQuery();
             }
-            return -1;
+            return null;
         }
 
         public int set(string sheet,int rows,string name,string data)
@@ -193,10 +192,14 @@ namespace com.github.KeyMove.Tools
 
         public DataRow[] find(string sheet,string colname,string name)
         {
-            if (Sheets.ContainsKey(sheet))
+            try
             {
-                return SheetData[sheet].Select("[" + colname + "] like '" + name + "'");
+                if (Sheets.ContainsKey(sheet))
+                {
+                    return SheetData[sheet].Select("[" + colname + "] like '" + name + "'");
+                }
             }
+            catch { }
             return null;
         }
 
@@ -212,6 +215,18 @@ namespace com.github.KeyMove.Tools
         public void get(string sheet,string title,int row)
         {
 
+        }
+
+        public void update(string sheet)
+        {
+            SheetAdapter[sheet].Update(SheetData[sheet]);
+        }
+
+        public void update(string sheet,DataTable dt)
+        {
+            DataTable ndt = dt.Copy();
+            SheetData[sheet] = ndt;
+            SheetAdapter[sheet].Update(ndt);
         }
 
         public void Dispose()

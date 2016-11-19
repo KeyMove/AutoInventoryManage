@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace com.github.KeyMove.Tools
 {
@@ -56,7 +54,7 @@ namespace com.github.KeyMove.Tools
             RecvDataCallBack = callback;
             if (RecvDataCallBack != null)
             {
-                new Task(() => {
+                new Thread(() => {
                     while (RecvDataCallBack != null)
                     {
                         IPEndPoint ep = new IPEndPoint(IPAddress.Any, 0);
@@ -333,12 +331,12 @@ namespace com.github.KeyMove.Tools
             ips = getIPAddress();
             isRun = true;
             OutPoint = new IPEndPoint(IPAddress.Any, 0);
-            new Task(() => {
+            new Thread(() => {
                 while (isRun)
                     try {RecvLoop();}
                     catch (Exception e) { }
             }).Start();
-            new Task(() => {
+            new Thread(() => {
                 while (isRun)
                     try { SendLoop(); Thread.Sleep(10); }
                     catch (Exception e) { }

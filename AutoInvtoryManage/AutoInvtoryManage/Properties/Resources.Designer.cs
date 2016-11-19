@@ -151,6 +151,16 @@ namespace AutoInvtoryManage.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] Base {
+            get {
+                object obj = ResourceManager.GetObject("Base", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap C1 {
@@ -196,6 +206,16 @@ namespace AutoInvtoryManage.Properties {
         internal static System.Drawing.Bitmap C5 {
             get {
                 object obj = ResourceManager.GetObject("C5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap C6 {
+            get {
+                object obj = ResourceManager.GetObject("C6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

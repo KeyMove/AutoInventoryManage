@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace AutoInvtoryManage
 {
@@ -29,14 +29,14 @@ namespace AutoInvtoryManage
         {
             size = new Size(w, h);
             SetPageSize(w, h);
-            deffont =f!=null? f : new Font("宋体", 9);
+            deffont =f!=null? f : new Font("宋体", 2.5f, GraphicsUnit.Millimeter);
         }
 
         public DefBarCode()
         {
             size = new Size(30, 20);
             SetPageSize(210, 297);
-            deffont = new Font("宋体", 2.2f, GraphicsUnit.Millimeter);
+            deffont = new Font("宋体", 2.5f, GraphicsUnit.Millimeter);
         }
         
         float toCent(string str)
@@ -63,12 +63,12 @@ namespace AutoInvtoryManage
 
         public void Draw(Graphics g, float x, float y, string value, string title, string message)
         {
-            Pen p = new Pen(Color.Black, 0.5f);
-            g.DrawRectangle(p, x, y, 30 - 1, 20 - 1);
-            float codelen = Code93.getLength(value) * 0.15f;
+            //Pen p = new Pen(Color.Black, 0.5f);
+            //g.DrawRectangle(p, x, y, 30 - 1, 20 - 1);
+            float codelen = Code93.getLength(value) * 0.125f;
             codelen = (29 - codelen) / 2;
             float fh = deffont.Size * 32 / 24 / 4;
-            Code93.DrawToGraphics(value, g, codelen + x, y + 5, 0.15f, 8);
+            Code93.DrawToGraphics(value, g, codelen + x, y + 5, 0.125f, 8);
             float mx = toCent(message);
             float tx = toCent(title);
             float defsize = deffont.Size;
@@ -77,8 +77,9 @@ namespace AutoInvtoryManage
                 mx *= 2;
                 mx = -mx + 30;                
             }
-            g.DrawString(message, deffont, Brushes.Black, x + toCent(message), y + 1);
-            g.DrawString(title, deffont, Brushes.Black, x + toCent(title), y + 19 - 4);
+            g.DrawString(message, deffont, Brushes.Black, x + toCent(message), y + 1.5f);
+            g.DrawString(title, deffont, Brushes.Black, x + toCent(title), y + 19 - 3.5f);
+            g.DrawString(value, deffont, Brushes.Black, x + toCent(value), y + 19 - 6);
         }
 
         public Bitmap getImage(string value, string title, string message)
@@ -94,8 +95,8 @@ namespace AutoInvtoryManage
         {
             col = (w - 8) / 32;
             row = (h - 8) / 22;
-            startx = (w - (col * 32)) / 2;
-            starty = (h - (row * 22)) / 2;
+            startx = (w - (col * 30)) / 2;
+            starty = (h - (row * 20)) / 2;
             maxindex = col * row;
         }
 

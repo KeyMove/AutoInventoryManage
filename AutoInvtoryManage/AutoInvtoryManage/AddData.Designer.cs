@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddData));
             this.T1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CSID = new System.Windows.Forms.CheckBox();
@@ -177,7 +178,7 @@
             this.button1.Location = new System.Drawing.Point(275, 292);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 34);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 9;
             this.button1.Text = "确定";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -211,7 +212,7 @@
             this.T8.Location = new System.Drawing.Point(77, 282);
             this.T8.Name = "T8";
             this.T8.Size = new System.Drawing.Size(185, 20);
-            this.T8.TabIndex = 5;
+            this.T8.TabIndex = 8;
             // 
             // AddData
             // 
@@ -236,6 +237,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.T2);
             this.Controls.Add(this.T1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddData";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "添加物料";

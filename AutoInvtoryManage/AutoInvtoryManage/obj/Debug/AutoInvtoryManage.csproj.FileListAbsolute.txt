@@ -29,3 +29,4 @@ C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryMan
 C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.Properties.Resources.resources
 C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.csproj.GenerateResource.Cache
 C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.InfoConfirm.resources
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Debug\AutoInvtoryManage.LoadExecl.resources

@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace AutoInvtoryManage
@@ -35,7 +35,8 @@ namespace AutoInvtoryManage
 
         public string[] Data
         {
-            get { return new string[] { /*T1.Text,*/T2.Text,T3.Text,T4.Text,T5.Text,T6.Text,T7.Text,T8.Text }; }
+            get { return new string[] { /*T1.Text,*/T2.Text, T3.Text, T4.Text, T5.Text, T6.Text, T7.Text, T8.Text }; }
+            set { T2.Text = value[0]; T3.Text = value[1]; T4.Text = value[2]; T5.Text = value[3]; T6.Text = value[4]; T7.Text = value[5]; T8.Text = value[6]; }
         }
 
         private void CSID_CheckedChanged(object sender, EventArgs e)
