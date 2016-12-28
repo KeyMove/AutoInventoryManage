@@ -11,18 +11,18 @@ namespace com.github.KeyMove.Tools
 {
 
 
-    public class NetData
+    public interface NetInvoke
     {
-        public List<int> cmdTimeout = new List<int>();
-        public List<int> cmdUse = new List<int>();
-        public List<byte[]> cmdData = new List<byte[]>();
+        void RecvData(byte[] data);
+        void SendLoop();
+        void SendData(int id, byte[] data);
     }
     public class UserInfo
     {
         public long ip;
         public int id;
+        public NetInvoke net;
         public IPEndPoint Target;
-        public NetData net;
         public UdpClient handle;
         public Encoding encode = Encoding.Default;
         public Action<UserInfo, byte[]> RecvDataCallBack;
@@ -30,12 +30,12 @@ namespace com.github.KeyMove.Tools
         {
             get; set;
         }
-        public UserInfo(int id, long ip)
+        public UserInfo(int id, long ip,NetInvoke inv=null)
         {
             this.id = id;
             this.ip = ip;
+            net = inv;
             Target = new IPEndPoint(ip, 2333);
-            net = new NetData();
             handle = new UdpClient(0);
         }
         public override string ToString()
@@ -82,7 +82,7 @@ namespace com.github.KeyMove.Tools
         private bool isRun;
         private List<UserInfo> UserList = new List<UserInfo>();
         public delegate UserInfo newCallBack(UserInfo info);
-
+        public List<Action<UdpClient>> SendLoopCallBack = new List<Action<UdpClient>>();
         const int TimeOut = 10;
 
         public List<UserInfo> UserGroup
@@ -207,43 +207,26 @@ namespace com.github.KeyMove.Tools
         void RecvLoop()
         {
             byte[] buff = Search.Receive(ref OutPoint);
-            long ip= OutPoint.Address.Address;
+            long ip = OutPoint.Address.Address;
             OutPoint.Address = IPAddress.Any;
             OutPoint.Port = 0;
             string value = Encoding.Default.GetString(buff);
             UserInfo info = getUserFormIP(ip);
-            if (buff[0] == 0xAA)
+            if (value.IndexOf("ID:") == 0)
             {
-                if (ActionMap.ContainsKey(buff[3])&&info!=null)
+                int id = int.Parse(value.Substring(3));
+                if (info == null)
                 {
-                    MemoryStream bs = new MemoryStream(buff);
-                    bs.Seek(4,SeekOrigin.Begin);
-                    int pos = info.net.cmdUse.IndexOf(buff[3]);
-                    if (pos != -1)
-                    {
-                        info.net.cmdTimeout.RemoveAt(pos);
-                        info.net.cmdData.RemoveAt(pos);
-                        info.net.cmdUse.RemoveAt(pos);
-                    }
-                    ActionMap[buff[3]](info,bs);
+                    if (callback != null)
+                        info = callback(new UserInfo(id, ip));
+                    else
+                        info = new UserInfo(id, ip);
+                    if (info != null)
+                        UserList.Add(info);
                 }
             }
-            else
-            {
-                if (value.IndexOf("ID:") == 0)
-                {
-                    int id = int.Parse(value.Substring(3));
-                    if (info == null)
-                    {
-                        if (callback != null)
-                            info = callback(new UserInfo(id, ip));
-                        else
-                            info = new UserInfo(id, ip);
-                        if (info != null)
-                            UserList.Add(info);
-                    }
-                }
-            }
+            if(info.net!=null)
+                info.net.RecvData(buff);
         }
 
         int SearchCount=0;
@@ -259,21 +242,40 @@ namespace com.github.KeyMove.Tools
             }
             foreach (UserInfo info in UserList)
             {
-                if (info.net.cmdUse.Count != 0)
-                {
-                    lock (info.net)
-                    {
-                        for (int i = 0; i < info.net.cmdUse.Count; i++)
-                            if (info.net.cmdTimeout[i] != 0)
-                                if (--info.net.cmdTimeout[i] == 0)
-                                {
-                                    Search.Send(info.net.cmdData[i], info.net.cmdData[i].Length, new IPEndPoint(info.ip, port));
-                                    info.net.cmdTimeout[i] = TimeOut;
-                                }
-                    }
-                }
-                if (SearchCount % 10 == 0 && SearchCount != 0 && PipeUser.Contains(info))
-                    Search.Send(GetData, GetData.Length, new IPEndPoint(info.ip, port));
+                if (info.net != null)
+                    info.net.SendLoop();
+                //if (buff[0] == 0xAA)
+                //{
+                //    if (ActionMap.ContainsKey(buff[3]) && info != null)
+                //    {
+                //        MemoryStream bs = new MemoryStream(buff);
+                //        bs.Seek(4, SeekOrigin.Begin);
+                //        int pos = info.net.cmdUse.IndexOf(buff[3]);
+                //        if (pos != -1)
+                //        {
+                //            info.net.cmdTimeout.RemoveAt(pos);
+                //            info.net.cmdData.RemoveAt(pos);
+                //            info.net.cmdUse.RemoveAt(pos);
+                //        }
+                //        ActionMap[buff[3]](info, bs);
+                //    }
+                //}
+
+                //if (info.net.cmdUse.Count != 0)
+                //{
+                //    lock (info.net)
+                //    {
+                //        for (int i = 0; i < info.net.cmdUse.Count; i++)
+                //            if (info.net.cmdTimeout[i] != 0)
+                //                if (--info.net.cmdTimeout[i] == 0)
+                //                {
+                //                    Search.Send(info.net.cmdData[i], info.net.cmdData[i].Length, new IPEndPoint(info.ip, port));
+                //                    info.net.cmdTimeout[i] = TimeOut;
+                //                }
+                //    }
+                //}
+                //if (SearchCount % 10 == 0 && SearchCount != 0 && PipeUser.Contains(info))
+                //    Search.Send(GetData, GetData.Length, new IPEndPoint(info.ip, port));
             }
         }
 
@@ -306,22 +308,8 @@ namespace com.github.KeyMove.Tools
 
         public void SendData(UserInfo info,int id,params object[] buff)
         {
-            NetData data = info.net;
-            int code = id;
-            int pos = data.cmdUse.IndexOf(code);
-            byte[] v;           
-            if (pos == -1)
-            {
-                data.cmdUse.Add((int)code);
-                data.cmdData.Add(v=buildPacket(id, Object2Byte(buff)));
-                data.cmdTimeout.Add(TimeOut);
-            }
-            else
-            {
-                data.cmdData[pos] =v= buildPacket(id, Object2Byte(buff));
-                data.cmdTimeout[pos] = TimeOut;
-            }
-            Search.Send(v, v.Length, new IPEndPoint(info.ip, port));
+            NetInvoke data = info.net;
+            data.SendData(id, buildPacket(id, Object2Byte(buff)));
         }
         public ESPUDP(int port=2333)
         {

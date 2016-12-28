@@ -56,6 +56,7 @@
       <DependentUpon>AddData.cs</DependentUpon>
     </Compile>
     <Compile Include="BarCodePrint.cs" />
+    <Compile Include="CarControl.cs" />
     <Compile Include="Code93.cs" />
     <Compile Include="ESPUDP.cs" />
     <Compile Include="ExeclTools.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="LoadExecl.Designer.cs">
       <DependentUpon>LoadExecl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapDraw.cs" />
+    <Compile Include="PipeLink.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T2SConvert.cs" />

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.IO;
 using System.IO.Ports;
+using System.Net;
+using System.Net.Sockets;
 
 namespace AutoInvtoryManage
 {
@@ -32,6 +34,10 @@ namespace AutoInvtoryManage
         PictureBox SelectPrintPreBox;
         int RowIndex = -1;
         LoadExecl Loader = new LoadExecl();
+
+        DateTime start = new DateTime(DateTime.Now.Ticks);
+        private SerialPort COM;
+        private MapDraw mapInfo;
         void InitESPUDP()
         {
             Client.NewUserCallBack((UserInfo info)=> {
@@ -179,6 +185,647 @@ namespace AutoInvtoryManage
         private int printCol;
         private int printRow;
         private OpenFileDialog of=new OpenFileDialog();
+        private Bitmap CarMap;
+        private Graphics CarMapDraw;
+        private CarData SelectCar;
+        private int lastBattery;
+        private CheckStatus lastStatus;
+        private int lastNodeID;
+        private int lastLenght;
+        private int nowNodeID;
+        private int MaxSensor=9;
+        private int SensorStats=0xffff;
+        private int accangle=0;
+        private int lastPathSelect;
+        private int LeftMotorSpeed;
+        private int RightMotorSpeed;
+        private CarControl ControlCenter;
+        private byte lastID;
+        private int WaveSensorL;
+        private int WaveSensorR;
+        private MapData SelectMap;
+        private int StartNodeID;
+        private int TargetNodeID;
+        private int savelastNodeID;
+        private int lastDir;
+        private bool AutoFinderFlag;
+        private bool MapRecvFlag;
+        private bool MapSendFlag;
+        private int SendLen;
+        private int SendPos;
+        private TreeNode UnknownCar;
+        private byte[] recvList;
+        private byte sendID;
+        private TreeNode PathPoint;
+        private byte[] SendBuff;
+        private byte[][] sendarraydata = new byte[20][];
+        private byte[] sendarrayid=new byte[20];
+        void InitCarMap()
+        {
+            mapInfo = new MapDraw(A41MapBox.Width, A41MapBox.Height);
+            CarMap = new Bitmap(A41CarPicture.Width, A41CarPicture.Height);
+            CarMapDraw = Graphics.FromImage(CarMap);
+            CarMapDraw.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            A41MapBox.MouseWheel += (object sender, MouseEventArgs e) => {
+                if (mapInfo.isNull()) return;
+                if (e.Delta > 0)
+                    mapInfo.DrawScale += .1;
+                else if (mapInfo.DrawScale > 0.3)
+                    mapInfo.DrawScale -= .1;
+                A41MapBox.Image = mapInfo.Update();
+            };
+            UpdateInfo();
+        }
+
+        private void UpdateInfo()
+        {
+            if (SelectCar != null)
+                A41IDText.Text = string.Format("0x{0:X8}", SelectCar.ID);
+            A41PowerText.Text = lastBattery + "%";
+            switch (lastStatus)
+            {
+                case CheckStatus.CheckWay:
+                    A41StatusText.Text = "正常运行中";
+                    break;
+                case CheckStatus.ConfirmWay:
+                    A41StatusText.Text = "确认路口中";
+                    break;
+                case CheckStatus.ReturnWay:
+                    A41StatusText.Text = "路口导正";
+                    break;
+                case CheckStatus.PreTurn:
+                    A41StatusText.Text = "转向预减速";
+                    break;
+                case CheckStatus.TurnWay:
+                    A41StatusText.Text = "转向中";
+                    break;
+                case CheckStatus.TurnDone:
+                    A41StatusText.Text = "转向完成导正";
+                    break;
+                case CheckStatus.Stop:
+                    A41StatusText.Text = "待机";
+                    break;
+            }
+
+            if (lastStatus == CheckStatus.PreTurn || lastStatus == CheckStatus.TurnWay || lastStatus == CheckStatus.TurnDone)
+                A41NodePosText.Text = "节点" + lastNodeID;
+            else if (lastLenght == 100 || nowNodeID == lastNodeID)
+                A41NodePosText.Text = "节点" + nowNodeID;
+            else
+                A41NodePosText.Text = "节点" + lastNodeID + " -> 节点" + nowNodeID;
+
+            int temp = 1 << 7;
+            double dy;
+            double dx;
+            int xpos = CarMap.Width / 2, ypos = CarMap.Height / 2;
+            CarMapDraw.Clear(Color.White);
+            //传感器指示
+            CarMapDraw.DrawArc(new Pen(Color.Black, 10), xpos - 32, ypos - 32, 64, 64, -160, 140);
+            for (int i = 0; i < MaxSensor; i++)
+            {
+                dy = Math.Sin((i * 15 + -150) * Math.PI / 180) * 32 + ypos;
+                dx = Math.Cos((i * 15 + -150) * Math.PI / 180) * 32 + xpos;
+                int x = (int)dx;
+                int y = (int)dy;
+                if ((SensorStats & temp) != 0)
+                {
+                    CarMapDraw.FillEllipse(Brushes.DarkRed, x - 4, y - 4, 7, 7);
+                }
+                else
+                {
+                    CarMapDraw.FillEllipse(Brushes.GreenYellow, x - 4, y - 4, 7, 7);
+                }
+                temp <<= 1;
+            }
+            //方向指示
+            Point[] ps = new Point[4];
+            dy = Math.Sin((accangle - 90 - 12) * Math.PI / 180) * 10 + ypos;
+            dx = Math.Cos((accangle - 90 - 12) * Math.PI / 180) * 10 + xpos;
+            ps[0].X = (int)dx;
+            ps[0].Y = (int)dy;
+            dy = Math.Sin((accangle - 90) * Math.PI / 180) * 13 + ypos;
+            dx = Math.Cos((accangle - 90) * Math.PI / 180) * 13 + xpos;
+            ps[1].X = (int)dx;
+            ps[1].Y = (int)dy;
+            dy = Math.Sin((accangle - 90 + 12) * Math.PI / 180) * 10 + ypos;
+            dx = Math.Cos((accangle - 90 + 12) * Math.PI / 180) * 10 + xpos;
+            ps[2].X = (int)dx;
+            ps[2].Y = (int)dy;
+
+            ps[3].X = xpos;
+            ps[3].Y = ypos;
+            CarMapDraw.FillEllipse(Brushes.Gray, xpos - 25, ypos - 25, 50, 50);
+            CarMapDraw.FillEllipse(Brushes.Black, xpos - 15, ypos - 15, 30, 30);
+            CarMapDraw.FillPolygon(Brushes.Wheat, ps);
+
+
+            //路口指示
+            if ((lastPathSelect & 2) != 0)
+                CarMapDraw.DrawArc(new Pen(Color.GreenYellow, 4), xpos - 20, ypos - 20, 40, 40, -140, 30);
+            else
+                CarMapDraw.DrawArc(new Pen(Color.DarkRed, 4), xpos - 20, ypos - 20, 40, 40, -140, 30);
+
+            if ((lastPathSelect & 1) != 0)
+                CarMapDraw.DrawArc(new Pen(Color.GreenYellow, 4), xpos - 20, ypos - 20, 40, 40, -105, 30);
+            else
+                CarMapDraw.DrawArc(new Pen(Color.DarkRed, 4), xpos - 20, ypos - 20, 40, 40, -105, 30);
+
+            if ((lastPathSelect & 4) != 0)
+                CarMapDraw.DrawArc(new Pen(Color.GreenYellow, 4), xpos - 20, ypos - 20, 40, 40, -70, 30);
+            else
+                CarMapDraw.DrawArc(new Pen(Color.DarkRed, 4), xpos - 20, ypos - 20, 40, 40, -70, 30);
+
+            //车轮
+            CarMapDraw.FillRectangle(Brushes.Black, xpos - 28, ypos - 8, 7, 16);
+            CarMapDraw.FillRectangle(Brushes.Black, xpos + 28 - 7, ypos - 8, 7, 16);
+            for (int i = 0; i < 6; i++)
+            {
+                CarMapDraw.DrawLine(Pens.Gray, xpos - 26, ypos - 8 + i * 3, xpos - 23, ypos - 8 + i * 3);
+                CarMapDraw.DrawLine(Pens.Gray, xpos + 23, ypos - 8 + i * 3, xpos + 26, ypos - 8 + i * 3);
+            }
+
+            CarMapDraw.FillRectangle(Brushes.Black, xpos - 19, ypos - 10, 2, 20);
+            CarMapDraw.FillRectangle(Brushes.Black, xpos + 17, ypos - 10, 2, 20);
+            if (LeftMotorSpeed > 0)
+                CarMapDraw.DrawLine(Pens.LightGreen, xpos - 18, ypos, xpos - 18, ypos - LeftMotorSpeed / 10);
+            else if (LeftMotorSpeed < 0)
+                CarMapDraw.DrawLine(Pens.DarkRed, xpos - 18, ypos, xpos - 18, ypos - LeftMotorSpeed / 10);
+            if (RightMotorSpeed > 0)
+                CarMapDraw.DrawLine(Pens.LightGreen, xpos + 18, ypos, xpos + 18, ypos - RightMotorSpeed / 10);
+            else if (RightMotorSpeed < 0)
+                CarMapDraw.DrawLine(Pens.DarkRed, xpos + 18, ypos, xpos + 18, ypos - RightMotorSpeed / 10);
+
+            //LSpeed.Points.AddY(LeftMotorSpeed);
+            //RSpeed.Points.AddY(RightMotorSpeed);
+
+            //if (LSpeed.Points.Count >= 50)
+            //{
+            //    LSpeed.Points.RemoveAt(0);
+            //    RSpeed.Points.RemoveAt(0);
+            //}
+
+            //LeftWaveLenght.Text = WaveSensorL + "cm";
+            //RightWaveLenght.Text = WaveSensorR + "cm";
+
+            A41CarPicture.Image = CarMap;
+        }
+        
+        void CarRecvLoop(byte[] buff,IPAddress lasttarget)
+        {
+            if (buff[0] == 0xAA)
+            {
+
+                int index = -1;
+                CarData car = ControlCenter.getCarFormIP(lasttarget);
+                if (car == null) return;
+                index = buff[3];
+                switch (buff[3])
+                {
+                    case 1:
+                        MemoryStream ms = new MemoryStream(buff);
+                        ms.Seek(4, SeekOrigin.Begin);
+                        if (car.net == null)
+                            MessageBox.Show("车辆信息错误");
+                        car.net.lastRecvID = lastID = (byte)ms.ReadByte();
+                        if (car == SelectCar)
+                        {
+                            SensorStats = ReadInt16(ms);
+                            WaveSensorL = ReadInt16(ms);
+                            WaveSensorR = ReadInt16(ms);
+                            LeftMotorSpeed = (int)ms.ReadByte();
+                            if (LeftMotorSpeed > 128) LeftMotorSpeed -= 256;
+                            RightMotorSpeed = (int)ms.ReadByte();
+                            if (RightMotorSpeed > 128) RightMotorSpeed -= 256;
+                            lastBattery = ms.ReadByte();
+                        }
+                        else
+                        {
+                            ReadInt32(ms);
+                            ReadInt32(ms);
+                            ms.ReadByte();
+                        }
+                        switch ((ReturnStatus)ms.ReadByte())
+                        {
+                            case ReturnStatus.RunStatus:
+                                //Invoke(new MethodInvoker(() =>{
+                                CheckStatus Status = (CheckStatus)ms.ReadByte();
+                                int PathSelect = car.WayStatus = ms.ReadByte();
+                                int pross = ms.ReadByte();
+                                int lastnodeid = ms.ReadByte();
+                                car.status = Status;
+                                car.nowNodeID = ms.ReadByte();
+                                car.StartNodeID = ms.ReadByte();
+                                car.TargetNodeID = ms.ReadByte();
+                                bool enb = car.lastNodeID != lastnodeid;
+                                car.lastNodeID = lastnodeid;
+                                if (car.mapID != null)
+                                {
+                                    if (car.mapID == SelectMap)
+                                    {
+                                        if (car.lastNodeID != 255 && car.nowNodeID != 255 && car.lastNodeID != car.nowNodeID)
+                                            car.lastLenght = mapInfo[car.lastNodeID].pathlenght[(int)mapInfo[car.lastNodeID][mapInfo[car.nowNodeID]]];
+                                    }
+                                }
+                                if (SelectCar.ID == car.ID)
+                                {
+                                    lastNodeID = car.lastNodeID;
+                                    nowNodeID = car.nowNodeID;
+                                    lastStatus = Status;
+                                    lastPathSelect = PathSelect;
+                                    mapInfo.WayLenght = false;
+                                    //Invoke(new MethodInvoker(() =>
+                                    // {
+                                    if (car.StartNodeID != StartNodeID || car.TargetNodeID != TargetNodeID)
+                                    {
+                                        if (car.StartNodeID != 0xff && car.TargetNodeID != 0xff)
+                                            mapInfo.setTargetPoint(mapInfo[car.StartNodeID], mapInfo[car.TargetNodeID]);
+                                        StartNodeID = car.StartNodeID;
+                                        TargetNodeID = car.TargetNodeID;
+                                    }
+                                    if (!mapInfo.isNull())
+                                    {
+                                        if (savelastNodeID != car.lastNodeID)
+                                        {
+                                            savelastNodeID = car.lastNodeID;
+                                            car.pross = 0;
+                                        }
+                                        mapInfo.setCarNode(mapInfo[nowNodeID], mapInfo[lastNodeID]);
+                                        if (car.nowNodeID != car.lastNodeID)
+                                            if (!(lastStatus == CheckStatus.PreTurn || lastStatus == CheckStatus.TurnWay || lastStatus == CheckStatus.TurnDone))
+                                                car.pross = pross;
+                                    }
+                                    //}));
+                                }
+                                else
+                                {
+                                    if (enb)
+                                        car.pross = 0;
+                                    if (car.nowNodeID != car.lastNodeID)
+                                    {
+                                        if (!(Status == CheckStatus.PreTurn || Status == CheckStatus.TurnWay || Status == CheckStatus.TurnDone))
+                                            car.pross = pross;
+                                    }
+                                    //car.pross = pross;
+                                }
+                                Invoke(new MethodInvoker(() => {
+                                    if (!mapInfo.isNull())
+                                        A41MapBox.Image = mapInfo.Update();
+                                }));
+                                break;
+                            case ReturnStatus.PathFind:
+                                //Invoke(new MethodInvoker(() =>{
+                                if (SelectCar == car)
+                                {
+                                    int isnewway = ms.ReadByte();
+                                    lastStatus = (CheckStatus)ms.ReadByte();
+                                    lastPathSelect = ms.ReadByte();
+                                    lastLenght = ms.ReadByte();
+                                    car.lastNodeID = lastNodeID = ms.ReadByte();
+                                    car.nowNodeID = nowNodeID = ms.ReadByte();
+                                    lastDir = ms.ReadByte();
+                                    int isfind = ms.ReadByte();
+
+                                    if (isfind == 0)
+                                    {
+                                        if (AutoFinderFlag)
+                                        {
+                                            AutoFinderFlag = false;
+                                            A41DownloadMap_Click(null, null);
+                                            A41SearchMapButton.BackColor = Color.DarkRed;
+                                        }
+                                        return;
+                                    }
+                                    if (mapInfo.allPath.Count <= nowNodeID)
+                                    {
+                                        for (int i = mapInfo.NodeCount; i <= nowNodeID; i++)
+                                        {
+                                            mapInfo.getNewPathNode();
+                                        }
+                                    }
+                                    if (isnewway == 0)
+                                    {
+                                        mapInfo.WayLenght = true;
+                                        car.pross = 100;
+                                        if (mapInfo[lastNodeID][mapInfo[nowNodeID]] == PathType.nil)
+                                        {
+                                            mapInfo.LinkNode(mapInfo[lastNodeID], mapInfo[nowNodeID], (PathType)lastDir);
+                                        }
+                                        if (!mapInfo.isNull())
+                                        {
+                                            mapInfo.setCarNode(mapInfo[nowNodeID], mapInfo[lastNodeID]);
+                                            if (savelastNodeID != lastNodeID)
+                                            {
+                                                savelastNodeID = lastNodeID;
+                                                car.lastLenght = 0;
+                                            }
+                                            if (nowNodeID != lastNodeID)
+                                                if (!(lastStatus == CheckStatus.PreTurn || lastStatus == CheckStatus.TurnWay || lastStatus == CheckStatus.TurnDone))
+                                                {
+                                                    mapInfo.SetLastPathLenght(lastLenght);
+                                                    car.lastLenght = lastLenght;
+                                                }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        mapInfo.WayLenght = false;
+                                        car.lastLenght = mapInfo[lastNodeID].pathlenght[(int)mapInfo[lastNodeID][mapInfo[nowNodeID]]];
+                                        if (!mapInfo.isNull())
+                                        {
+                                            if (savelastNodeID != lastNodeID)
+                                            {
+                                                savelastNodeID = lastNodeID;
+                                                mapInfo.SetLastPathLenght(0);
+                                                car.pross = 0;
+                                            }
+                                            mapInfo.setCarNode(mapInfo[nowNodeID], mapInfo[lastNodeID]);
+                                            if (nowNodeID != lastNodeID)
+                                                if (!(lastStatus == CheckStatus.PreTurn || lastStatus == CheckStatus.TurnWay || lastStatus == CheckStatus.TurnDone))
+                                                    car.pross = lastLenght;
+                                        }
+                                    }
+                                    Invoke(new MethodInvoker(() =>
+                                    {
+                                        if (!mapInfo.isNull())
+                                            A41MapBox.Image = mapInfo.Update();
+                                    }));
+                                }
+                                //}));
+                                //mapInfo.SetCarPathPos(mapInfo[lastNodeID], lastLenght, (PathType)lastDir);
+                                break;
+                            case ReturnStatus.MapSend:
+                                if (MapRecvFlag)
+                                    recvData(ms);
+                                break;
+                            case ReturnStatus.MapRecv:
+                                //Invoke(new MethodInvoker(() => {
+                                if (MapSendFlag)
+                                    if (!checkdata(SendCode.SendMap))
+                                    {
+                                        if (SendLen != 0)
+                                        {
+                                            SendMapPos(SendPos);
+                                            Invoke(new MethodInvoker(() =>
+                                            {
+                                                if (SendLen != 0)
+                                                    A41UDProgress.Value = SendPos * 100 / SendLen;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            MapSendFlag = false;
+                                            Invoke(new MethodInvoker(() => {
+                                                addGroup(SelectCar, SelectMap);
+                                                A41UDProgress.Value = 100;
+                                            }));
+                                        }
+                                    }
+                                //}));
+
+                                break;
+                            case ReturnStatus.PreRunScan:
+                                //car = ControlCenter.getCarFormIP(lasttarget);
+                                if (car != null)
+                                {
+                                    //Invoke(new MethodInvoker(() =>{
+                                    int sid = car.StartNodeID;
+                                    int tid = car.TargetNodeID;
+                                    car.StartNodeID = ms.ReadByte();
+                                    car.TargetNodeID = ms.ReadByte();
+                                    if (sid == tid)
+                                    {
+                                        senddata(SendCode.Stop, car.net);
+                                    }
+                                    else if (ControlCenter.CheckPath(car))
+                                    {
+                                        senddata(SendCode.SetTargetNode, car.net, car.TargetNodeID);
+                                    }
+                                    else
+                                    {
+                                        car.StartNodeID = sid;
+                                        car.TargetNodeID = tid;
+                                    }
+                                    //}));
+                                }
+                                break;
+                            case ReturnStatus.ScanIDCard:
+                                int id = ReadInt32(ms);
+                                //Invoke(new MethodInvoker(() =>{
+                                if (id != 0)
+                                {
+                                    if (ControlCenter.setCarMap(car.ID, id))
+                                    {
+                                        //senddata(SendCode.Stop, car.net);
+                                        SelectCar.net.SendData((int)SendCode.Stop, new byte[] { });
+                                        if (MapSendFlag == false)
+                                            A41UploadMap_Click(null, null);
+                                    }
+                                }
+                                //}));
+                                break;
+                        }
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            UpdateInfo();
+                        }));
+                        break;
+                }
+            }
+        }
+        void SendMapPos(int pos)
+        {
+            StringBuilder sb = new StringBuilder();
+            int len = (SendLen - SendPos);
+            len = len > 32 ? 32 : len;
+            MemoryStream ms = new MemoryStream();
+            ms.WriteByte((byte)((pos >> 8) & 0xff));
+            ms.WriteByte((byte)(pos & 0xff));
+            ms.WriteByte((byte)len);
+            ms.WriteByte((byte)((SendLen - SendPos) <= 32 ? 0 : 1));
+            ms.Write(SendBuff, pos, len);
+            if ((SendLen - SendPos) <= 32)
+            {
+                SendLen = 0;
+                SendPos = 0;
+                SendBuff = null;
+            }
+            SendPos += len;
+            SelectCar.net.SendData((int)SendCode.SendMap, ms.ToArray());
+        }
+
+        MapData SetMap(MapData m, Stream s)
+        {
+            MapDraw map = m.Handle;
+            map.SearchInit();
+            map.setNode(map.toNode(s)[PathType.Forward]);
+            map.AutoOffset();
+            MemoryStream ms = new MemoryStream();
+            map.toBin(ms);
+            m.mapdata = ms.ToArray();
+            return m;
+        }
+
+        MapData addMap()
+        {
+            MapDraw map = new MapDraw(A41MapBox.Width, A41MapBox.Height);
+            map.SearchInit();
+            MapData md = ControlCenter.addMap(map);
+            TreeNode node = new TreeNode(md.ToString());
+            node.Tag = md;
+            A41CarGroup.Nodes.Add(node);
+            A41CarGroup.ExpandAll();
+            return md;
+        }
+
+        MapData addMap(Stream s)
+        {
+            MapDraw map = new MapDraw(A41MapBox.Width, A41MapBox.Height);
+            map.SearchInit();
+            map.setNode(map.toNode(s)[PathType.Forward]);
+            map.AutoOffset();
+            MapData md = ControlCenter.addMap(map);
+            MemoryStream ms = new MemoryStream();
+            map.toBin(ms);
+            md.mapdata = ms.ToArray();
+            TreeNode node = new TreeNode(md.ToString());
+            node.Tag = md;
+            A41CarGroup.Nodes.Add(node);
+            A41CarGroup.ExpandAll();
+            return md;
+        }
+
+        void SetNodePointList(List<PathNode> nodes)
+        {
+            PathPoint.Nodes.Clear();
+            foreach (PathNode node in nodes)
+            {
+                TreeNode tn = new TreeNode(node.ToString());
+                tn.Tag = node;
+                PathPoint.Nodes.Add(tn);
+                A41PathFlagTree.ExpandAll();
+            }
+        }
+
+        void recvData(Stream s)
+        {
+            //Invoke(new MethodInvoker(() =>{
+            int size = ReadInt16(s);
+            int pos = ReadInt16(s);
+            int len = ReadInt16(s);
+            int isData = s.ReadByte();
+            if (size == 0)
+            {
+                MapRecvFlag = false;
+                return;
+            }
+            for (int i = 0; i < len; i++)
+            {
+                recvList[pos + i] = (byte)s.ReadByte();
+            }
+            if (isData != 0)
+            {
+                senddata(SendCode.RecvMap, (pos + len) / 256, (pos + len) % 256);
+            }
+            else
+            {
+                MapRecvFlag = false;
+                Invoke(new MethodInvoker(() => {
+                    MapData m = ControlCenter.CheckMap(recvList);
+                    if (SelectCar.mapID != null)
+                        if (SelectCar.mapID.mapdata == null)
+                            m = SetMap(SelectCar.mapID, new MemoryStream(recvList));
+                    if (m == null)
+                        m = addMap(new MemoryStream(recvList));
+                    addGroup(SelectCar, m);
+                    SelectMap = m;
+                    mapInfo = m.Handle;
+                    SetNodePointList(mapInfo.getEndPoint());
+                    A41MapBox.Image = mapInfo.Update();
+                }));
+            }
+            Invoke(new MethodInvoker(() => {
+                A41UDProgress.Value = (pos + len) * 100 / size;
+            }));
+        }
+
+        bool checkdata(SendCode code)
+        {
+            return sendarraydata[(int)code] == null;
+        }
+
+        void senddata(int id, object[] list)
+        {
+            StringBuilder sb = new StringBuilder();
+            sendarrayid[id] = sendID;
+            sb.Append("uartpacket(2,{");
+            sb.Append(sendID++);
+            sb.Append(',');
+            sb.Append(id);
+            sb.Append(',');
+            foreach (object obj in list)
+            {
+                sb.Append(obj.ToString());
+                sb.Append(',');
+            }
+            sb.Append("0})");
+
+            sendarraydata[id] = Encoding.Default.GetBytes(sb.ToString());
+            //Search.Send(cmd, cmd.Length, new IPEndPoint(lasttarget.Address | 0xff000000, 2333));
+        }
+
+        private void addGroup(CarData selectCar, MapData m)
+        {
+            if (m == null) return;
+            TreeNode mapnode = null;
+            foreach (TreeNode node in A41CarGroup.Nodes)
+            {
+                if (node.Tag == m)
+                {
+                    mapnode = node;
+                    break;
+                }
+            }
+            if (mapnode == null) return;
+            foreach (TreeNode node in UnknownCar.Nodes)
+            {
+                if (node.Tag == selectCar)
+                {
+                    node.Remove();
+                    mapnode.Nodes.Add(node);
+                    ControlCenter.setCarMap(selectCar, m);
+                    m.Handle.CarList.Add(selectCar);
+                    A41CarGroup.ExpandAll();
+                    return;
+                }
+            }
+        }
+
+        void senddata(SendCode code, params object[] list)
+        {
+            senddata((int)code, list);
+        }
+
+        int ReadInt16(Stream s)
+        {
+            int v;
+            v = s.ReadByte();
+            v <<= 8;
+            v |= s.ReadByte();
+            return v;
+        }
+
+        int ReadInt32(Stream s)
+        {
+            int v;
+            v = s.ReadByte();
+            v <<= 8;
+            v |= s.ReadByte();
+            v <<= 8;
+            v |= s.ReadByte();
+            v <<= 8;
+            v |= s.ReadByte();
+            return v;
+        }
 
         void InitUART()
         {
@@ -621,6 +1268,7 @@ namespace AutoInvtoryManage
                     string code = ExeclSheet.find("库存信息$", "日期", time)[0]["物料代码"].ToString();
                     dr = ExeclSheet.find("库存$", "物料代码", code)[0];
                     drs = ExeclSheet.find("库存信息$", "物料代码", code);
+                    fifo = dr["储存方式"].ToString() == "先进先出";
                     bool equ = false;
                     for(int i=0;i<drs.Length;i++)
                         if(drs[i]["日期"].ToString()==time)
@@ -631,9 +1279,9 @@ namespace AutoInvtoryManage
                         }
                     if (!equ) return false;
                     if (count > 0)
-                        datas[0] = "扫码枪入库";
+                        datas[1] = "扫码枪入库";
                     else
-                        datas[0] = "扫码枪出库";
+                        datas[1] = "扫码枪出库";
                 }
                 
                 if (datas[0].Length == 0)
@@ -663,10 +1311,12 @@ namespace AutoInvtoryManage
                             ExeclSheet.set("库存信息$", ds, "日期", "数量", "0");
                         newInventoryIO(dr, -value, datas, timeinfo);
                         reqlen -= value;
+                        drs[index] = null;
                     }
                     if (reqlen != 0)
                         foreach (DataRow data in drs)
                         {
+                            if (data == null) continue;
                             if (reqinfo)
                                 datas[0] = "物料日期:" + data["日期"].ToString();
                             value = int.Parse(data.ItemArray[1].ToString());
@@ -1008,8 +1658,12 @@ namespace AutoInvtoryManage
                     //A21ItemList.Items.Clear();
                     foreach (DataRow dr in rows)
                         A21ItemList.Items.Add(dr["日期"].ToString());
-
-                    A21ItemList.SelectedIndex = 0;
+                    if (A21ItemList.Items.Count > 0)
+                        A21ItemList.SelectedIndex = 0;
+                    else
+                    {
+                        A21BarImage.Image = null;
+                    }
                     //A21BarImage.Image = Code93.BarCode(encodetime(A1DataView.CurrentRow.Cells["日期"].Value.ToString()), A1DataView.CurrentRow.Cells["物料代码"].Value.ToString(), A1DataView.CurrentRow.Cells["物料名称"].Value.ToString() + A1DataView.CurrentRow.Cells["规格型号"].Value.ToString());
                     //A21PrintView.Zoom = 1.5;
                     //A21PrintView.Show();
@@ -1068,8 +1722,7 @@ namespace AutoInvtoryManage
             A21BarImage.Image = Code93.BarCode(encodetime(A21ItemList.SelectedItem.ToString()), A1DataView.CurrentRow.Cells["物料代码"].Value.ToString(), A1DataView.CurrentRow.Cells["物料名称"].Value.ToString() + A1DataView.CurrentRow.Cells["规格型号"].Value.ToString());
         }
 
-        DateTime start = new DateTime(DateTime.Now.Ticks);
-        private SerialPort COM;
+        
 
         private void A13LoadExecl_Click(object sender, EventArgs e)
         {
@@ -1406,6 +2059,35 @@ namespace AutoInvtoryManage
             }
             catch { MessageBox.Show("打开端口失败!");return; }
             A15LinkCom.Text = "断开";
+        }
+
+        private void A41UploadMap_Click(object sender, EventArgs e)
+        {
+            if (mapInfo.isNull())
+            {
+                MessageBox.Show("地图数据为空");
+                return;
+            }
+            if (MapSendFlag)
+            {
+                MapSendFlag = false;
+                return;
+            }
+            A41UDProgress.Value = 0;
+            MemoryStream ms = new MemoryStream(recvList);
+            mapInfo.toBin(ms);
+            SendLen = (int)ms.Position;
+            SendPos = 0;
+            SendBuff = recvList;
+            SendMapPos(0);
+            MapSendFlag = true;
+        }
+
+        private void A41DownloadMap_Click(object sender, EventArgs e)
+        {
+            A41UDProgress.Value = 0;
+            MapRecvFlag = true;
+            senddata(SendCode.RecvMap, 255, 255);
         }
     }
 }

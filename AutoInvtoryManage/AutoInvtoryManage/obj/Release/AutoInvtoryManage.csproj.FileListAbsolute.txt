@@ -1,0 +1,12 @@
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\bin\Release\AutoInvtoryManage.exe.config
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\bin\Release\AutoInvtoryManage.exe
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\bin\Release\AutoInvtoryManage.pdb
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.AddData.resources
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.Form1.resources
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.InfoConfirm.resources
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.LoadExecl.resources
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.Properties.Resources.resources
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.csproj.GenerateResource.Cache
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.exe
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.pdb
+C:\Users\KeyMove\Documents\GitHubVisualStudio\AutoInventoryManage\AutoInvtoryManage\AutoInvtoryManage\obj\Release\AutoInvtoryManage.csprojResolveAssemblyReference.cache

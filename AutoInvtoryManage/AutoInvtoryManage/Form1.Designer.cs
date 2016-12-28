@@ -141,27 +141,27 @@
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.A41MapBox = new System.Windows.Forms.PictureBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.NodePosText = new System.Windows.Forms.TextBox();
+            this.A41NodePosText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.MoreInfoButton = new System.Windows.Forms.Button();
-            this.PowerText = new System.Windows.Forms.TextBox();
+            this.A41MoreInfoButton = new System.Windows.Forms.Button();
+            this.A41PowerText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.StatusText = new System.Windows.Forms.TextBox();
+            this.A41StatusText = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.A41CarPicture = new System.Windows.Forms.PictureBox();
-            this.IDText = new System.Windows.Forms.TextBox();
+            this.A41IDText = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.randomTest = new System.Windows.Forms.CheckBox();
-            this.UDProgress = new System.Windows.Forms.ProgressBar();
-            this.PathFlagTree = new System.Windows.Forms.TreeView();
-            this.DownloadMap = new System.Windows.Forms.Button();
-            this.UploadMap = new System.Windows.Forms.Button();
-            this.gotoNodeButton = new System.Windows.Forms.Button();
-            this.SearchMapButton = new System.Windows.Forms.Button();
-            this.SaveMapButton = new System.Windows.Forms.Button();
-            this.LoadMapButton = new System.Windows.Forms.Button();
+            this.A41UDProgress = new System.Windows.Forms.ProgressBar();
+            this.A41PathFlagTree = new System.Windows.Forms.TreeView();
+            this.A41DownloadMap = new System.Windows.Forms.Button();
+            this.A41UploadMap = new System.Windows.Forms.Button();
+            this.A41gotoNodeButton = new System.Windows.Forms.Button();
+            this.A41SearchMapButton = new System.Windows.Forms.Button();
+            this.A41SaveMapButton = new System.Windows.Forms.Button();
+            this.A41LoadMapButton = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.A41CarGroup = new System.Windows.Forms.TreeView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.MainTabView.SuspendLayout();
@@ -1519,24 +1519,24 @@
             // 
             // groupBox16
             // 
-            this.groupBox16.Controls.Add(this.SaveMapButton);
-            this.groupBox16.Controls.Add(this.LoadMapButton);
+            this.groupBox16.Controls.Add(this.A41SaveMapButton);
+            this.groupBox16.Controls.Add(this.A41LoadMapButton);
             this.groupBox16.Controls.Add(this.randomTest);
-            this.groupBox16.Controls.Add(this.UDProgress);
-            this.groupBox16.Controls.Add(this.PathFlagTree);
-            this.groupBox16.Controls.Add(this.DownloadMap);
-            this.groupBox16.Controls.Add(this.UploadMap);
-            this.groupBox16.Controls.Add(this.gotoNodeButton);
-            this.groupBox16.Controls.Add(this.SearchMapButton);
-            this.groupBox16.Controls.Add(this.NodePosText);
+            this.groupBox16.Controls.Add(this.A41UDProgress);
+            this.groupBox16.Controls.Add(this.A41PathFlagTree);
+            this.groupBox16.Controls.Add(this.A41DownloadMap);
+            this.groupBox16.Controls.Add(this.A41UploadMap);
+            this.groupBox16.Controls.Add(this.A41gotoNodeButton);
+            this.groupBox16.Controls.Add(this.A41SearchMapButton);
+            this.groupBox16.Controls.Add(this.A41NodePosText);
             this.groupBox16.Controls.Add(this.label6);
-            this.groupBox16.Controls.Add(this.MoreInfoButton);
-            this.groupBox16.Controls.Add(this.PowerText);
+            this.groupBox16.Controls.Add(this.A41MoreInfoButton);
+            this.groupBox16.Controls.Add(this.A41PowerText);
             this.groupBox16.Controls.Add(this.label7);
-            this.groupBox16.Controls.Add(this.StatusText);
+            this.groupBox16.Controls.Add(this.A41StatusText);
             this.groupBox16.Controls.Add(this.label9);
             this.groupBox16.Controls.Add(this.A41CarPicture);
-            this.groupBox16.Controls.Add(this.IDText);
+            this.groupBox16.Controls.Add(this.A41IDText);
             this.groupBox16.Controls.Add(this.label10);
             this.groupBox16.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox16.Location = new System.Drawing.Point(0, 335);
@@ -1546,17 +1546,17 @@
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "信息";
             // 
-            // NodePosText
+            // A41NodePosText
             // 
-            this.NodePosText.BackColor = System.Drawing.Color.White;
-            this.NodePosText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.NodePosText.Font = new System.Drawing.Font("宋体", 12F);
-            this.NodePosText.Location = new System.Drawing.Point(310, 93);
-            this.NodePosText.Name = "NodePosText";
-            this.NodePosText.ReadOnly = true;
-            this.NodePosText.Size = new System.Drawing.Size(132, 19);
-            this.NodePosText.TabIndex = 8;
-            this.NodePosText.Text = "未知";
+            this.A41NodePosText.BackColor = System.Drawing.Color.White;
+            this.A41NodePosText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.A41NodePosText.Font = new System.Drawing.Font("宋体", 12F);
+            this.A41NodePosText.Location = new System.Drawing.Point(310, 93);
+            this.A41NodePosText.Name = "A41NodePosText";
+            this.A41NodePosText.ReadOnly = true;
+            this.A41NodePosText.Size = new System.Drawing.Size(132, 19);
+            this.A41NodePosText.TabIndex = 8;
+            this.A41NodePosText.Text = "未知";
             // 
             // label6
             // 
@@ -1568,26 +1568,26 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "位置:";
             // 
-            // MoreInfoButton
+            // A41MoreInfoButton
             // 
-            this.MoreInfoButton.Location = new System.Drawing.Point(259, 134);
-            this.MoreInfoButton.Name = "MoreInfoButton";
-            this.MoreInfoButton.Size = new System.Drawing.Size(90, 28);
-            this.MoreInfoButton.TabIndex = 6;
-            this.MoreInfoButton.Text = "详细信息>>";
-            this.MoreInfoButton.UseVisualStyleBackColor = true;
+            this.A41MoreInfoButton.Location = new System.Drawing.Point(259, 134);
+            this.A41MoreInfoButton.Name = "A41MoreInfoButton";
+            this.A41MoreInfoButton.Size = new System.Drawing.Size(90, 28);
+            this.A41MoreInfoButton.TabIndex = 6;
+            this.A41MoreInfoButton.Text = "详细信息>>";
+            this.A41MoreInfoButton.UseVisualStyleBackColor = true;
             // 
-            // PowerText
+            // A41PowerText
             // 
-            this.PowerText.BackColor = System.Drawing.Color.White;
-            this.PowerText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PowerText.Font = new System.Drawing.Font("宋体", 12F);
-            this.PowerText.Location = new System.Drawing.Point(342, 69);
-            this.PowerText.Name = "PowerText";
-            this.PowerText.ReadOnly = true;
-            this.PowerText.Size = new System.Drawing.Size(100, 19);
-            this.PowerText.TabIndex = 5;
-            this.PowerText.Text = "1%";
+            this.A41PowerText.BackColor = System.Drawing.Color.White;
+            this.A41PowerText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.A41PowerText.Font = new System.Drawing.Font("宋体", 12F);
+            this.A41PowerText.Location = new System.Drawing.Point(342, 69);
+            this.A41PowerText.Name = "A41PowerText";
+            this.A41PowerText.ReadOnly = true;
+            this.A41PowerText.Size = new System.Drawing.Size(100, 19);
+            this.A41PowerText.TabIndex = 5;
+            this.A41PowerText.Text = "1%";
             // 
             // label7
             // 
@@ -1599,17 +1599,17 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "剩余电量:";
             // 
-            // StatusText
+            // A41StatusText
             // 
-            this.StatusText.BackColor = System.Drawing.Color.White;
-            this.StatusText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.StatusText.Font = new System.Drawing.Font("宋体", 12F);
-            this.StatusText.Location = new System.Drawing.Point(310, 46);
-            this.StatusText.Name = "StatusText";
-            this.StatusText.ReadOnly = true;
-            this.StatusText.Size = new System.Drawing.Size(132, 19);
-            this.StatusText.TabIndex = 3;
-            this.StatusText.Text = "待机";
+            this.A41StatusText.BackColor = System.Drawing.Color.White;
+            this.A41StatusText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.A41StatusText.Font = new System.Drawing.Font("宋体", 12F);
+            this.A41StatusText.Location = new System.Drawing.Point(310, 46);
+            this.A41StatusText.Name = "A41StatusText";
+            this.A41StatusText.ReadOnly = true;
+            this.A41StatusText.Size = new System.Drawing.Size(132, 19);
+            this.A41StatusText.TabIndex = 3;
+            this.A41StatusText.Text = "待机";
             // 
             // label9
             // 
@@ -1630,17 +1630,17 @@
             this.A41CarPicture.TabIndex = 0;
             this.A41CarPicture.TabStop = false;
             // 
-            // IDText
+            // A41IDText
             // 
-            this.IDText.BackColor = System.Drawing.Color.White;
-            this.IDText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IDText.Font = new System.Drawing.Font("宋体", 12F);
-            this.IDText.Location = new System.Drawing.Point(310, 23);
-            this.IDText.Name = "IDText";
-            this.IDText.ReadOnly = true;
-            this.IDText.Size = new System.Drawing.Size(132, 19);
-            this.IDText.TabIndex = 1;
-            this.IDText.Text = "0";
+            this.A41IDText.BackColor = System.Drawing.Color.White;
+            this.A41IDText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.A41IDText.Font = new System.Drawing.Font("宋体", 12F);
+            this.A41IDText.Location = new System.Drawing.Point(310, 23);
+            this.A41IDText.Name = "A41IDText";
+            this.A41IDText.ReadOnly = true;
+            this.A41IDText.Size = new System.Drawing.Size(132, 19);
+            this.A41IDText.TabIndex = 1;
+            this.A41IDText.Text = "0";
             // 
             // label10
             // 
@@ -1663,86 +1663,88 @@
             this.randomTest.UseVisualStyleBackColor = true;
             this.randomTest.Visible = false;
             // 
-            // UDProgress
+            // A41UDProgress
             // 
-            this.UDProgress.Location = new System.Drawing.Point(610, 152);
-            this.UDProgress.Name = "UDProgress";
-            this.UDProgress.Size = new System.Drawing.Size(154, 10);
-            this.UDProgress.TabIndex = 15;
+            this.A41UDProgress.Location = new System.Drawing.Point(610, 152);
+            this.A41UDProgress.Name = "A41UDProgress";
+            this.A41UDProgress.Size = new System.Drawing.Size(154, 10);
+            this.A41UDProgress.TabIndex = 15;
             // 
-            // PathFlagTree
+            // A41PathFlagTree
             // 
-            this.PathFlagTree.Font = new System.Drawing.Font("宋体", 12F);
-            this.PathFlagTree.Location = new System.Drawing.Point(473, 15);
-            this.PathFlagTree.Name = "PathFlagTree";
-            this.PathFlagTree.ShowLines = false;
-            this.PathFlagTree.ShowPlusMinus = false;
-            this.PathFlagTree.Size = new System.Drawing.Size(131, 147);
-            this.PathFlagTree.TabIndex = 14;
+            this.A41PathFlagTree.Font = new System.Drawing.Font("宋体", 12F);
+            this.A41PathFlagTree.Location = new System.Drawing.Point(473, 15);
+            this.A41PathFlagTree.Name = "A41PathFlagTree";
+            this.A41PathFlagTree.ShowLines = false;
+            this.A41PathFlagTree.ShowPlusMinus = false;
+            this.A41PathFlagTree.Size = new System.Drawing.Size(131, 147);
+            this.A41PathFlagTree.TabIndex = 14;
             // 
-            // DownloadMap
+            // A41DownloadMap
             // 
-            this.DownloadMap.Font = new System.Drawing.Font("宋体", 10F);
-            this.DownloadMap.Location = new System.Drawing.Point(689, 110);
-            this.DownloadMap.Name = "DownloadMap";
-            this.DownloadMap.Size = new System.Drawing.Size(75, 36);
-            this.DownloadMap.TabIndex = 10;
-            this.DownloadMap.Text = "下载地图";
-            this.DownloadMap.UseVisualStyleBackColor = true;
+            this.A41DownloadMap.Font = new System.Drawing.Font("宋体", 10F);
+            this.A41DownloadMap.Location = new System.Drawing.Point(689, 110);
+            this.A41DownloadMap.Name = "A41DownloadMap";
+            this.A41DownloadMap.Size = new System.Drawing.Size(75, 36);
+            this.A41DownloadMap.TabIndex = 10;
+            this.A41DownloadMap.Text = "下载地图";
+            this.A41DownloadMap.UseVisualStyleBackColor = true;
+            this.A41DownloadMap.Click += new System.EventHandler(this.A41DownloadMap_Click);
             // 
-            // UploadMap
+            // A41UploadMap
             // 
-            this.UploadMap.Font = new System.Drawing.Font("宋体", 10F);
-            this.UploadMap.Location = new System.Drawing.Point(610, 110);
-            this.UploadMap.Name = "UploadMap";
-            this.UploadMap.Size = new System.Drawing.Size(75, 36);
-            this.UploadMap.TabIndex = 11;
-            this.UploadMap.Text = "上传地图";
-            this.UploadMap.UseVisualStyleBackColor = true;
+            this.A41UploadMap.Font = new System.Drawing.Font("宋体", 10F);
+            this.A41UploadMap.Location = new System.Drawing.Point(610, 110);
+            this.A41UploadMap.Name = "A41UploadMap";
+            this.A41UploadMap.Size = new System.Drawing.Size(75, 36);
+            this.A41UploadMap.TabIndex = 11;
+            this.A41UploadMap.Text = "上传地图";
+            this.A41UploadMap.UseVisualStyleBackColor = true;
+            this.A41UploadMap.Click += new System.EventHandler(this.A41UploadMap_Click);
             // 
-            // gotoNodeButton
+            // A41gotoNodeButton
             // 
-            this.gotoNodeButton.Font = new System.Drawing.Font("宋体", 10F);
-            this.gotoNodeButton.Location = new System.Drawing.Point(689, 15);
-            this.gotoNodeButton.Name = "gotoNodeButton";
-            this.gotoNodeButton.Size = new System.Drawing.Size(75, 36);
-            this.gotoNodeButton.TabIndex = 12;
-            this.gotoNodeButton.Text = "前往节点";
-            this.gotoNodeButton.UseVisualStyleBackColor = true;
+            this.A41gotoNodeButton.Font = new System.Drawing.Font("宋体", 10F);
+            this.A41gotoNodeButton.Location = new System.Drawing.Point(689, 15);
+            this.A41gotoNodeButton.Name = "A41gotoNodeButton";
+            this.A41gotoNodeButton.Size = new System.Drawing.Size(75, 36);
+            this.A41gotoNodeButton.TabIndex = 12;
+            this.A41gotoNodeButton.Text = "前往节点";
+            this.A41gotoNodeButton.UseVisualStyleBackColor = true;
             // 
-            // SearchMapButton
+            // A41SearchMapButton
             // 
-            this.SearchMapButton.Font = new System.Drawing.Font("宋体", 10F);
-            this.SearchMapButton.Location = new System.Drawing.Point(610, 15);
-            this.SearchMapButton.Name = "SearchMapButton";
-            this.SearchMapButton.Size = new System.Drawing.Size(75, 36);
-            this.SearchMapButton.TabIndex = 13;
-            this.SearchMapButton.Text = "搜索路径";
-            this.SearchMapButton.UseVisualStyleBackColor = true;
+            this.A41SearchMapButton.Font = new System.Drawing.Font("宋体", 10F);
+            this.A41SearchMapButton.Location = new System.Drawing.Point(610, 15);
+            this.A41SearchMapButton.Name = "A41SearchMapButton";
+            this.A41SearchMapButton.Size = new System.Drawing.Size(75, 36);
+            this.A41SearchMapButton.TabIndex = 13;
+            this.A41SearchMapButton.Text = "搜索路径";
+            this.A41SearchMapButton.UseVisualStyleBackColor = true;
             // 
-            // SaveMapButton
+            // A41SaveMapButton
             // 
-            this.SaveMapButton.Font = new System.Drawing.Font("宋体", 9F);
-            this.SaveMapButton.Location = new System.Drawing.Point(402, 111);
-            this.SaveMapButton.Name = "SaveMapButton";
-            this.SaveMapButton.Size = new System.Drawing.Size(65, 23);
-            this.SaveMapButton.TabIndex = 17;
-            this.SaveMapButton.Text = "保存地图";
-            this.SaveMapButton.UseVisualStyleBackColor = true;
+            this.A41SaveMapButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.A41SaveMapButton.Location = new System.Drawing.Point(402, 111);
+            this.A41SaveMapButton.Name = "A41SaveMapButton";
+            this.A41SaveMapButton.Size = new System.Drawing.Size(65, 23);
+            this.A41SaveMapButton.TabIndex = 17;
+            this.A41SaveMapButton.Text = "保存地图";
+            this.A41SaveMapButton.UseVisualStyleBackColor = true;
             // 
-            // LoadMapButton
+            // A41LoadMapButton
             // 
-            this.LoadMapButton.Font = new System.Drawing.Font("宋体", 9F);
-            this.LoadMapButton.Location = new System.Drawing.Point(402, 140);
-            this.LoadMapButton.Name = "LoadMapButton";
-            this.LoadMapButton.Size = new System.Drawing.Size(65, 23);
-            this.LoadMapButton.TabIndex = 18;
-            this.LoadMapButton.Text = "载入地图";
-            this.LoadMapButton.UseVisualStyleBackColor = true;
+            this.A41LoadMapButton.Font = new System.Drawing.Font("宋体", 9F);
+            this.A41LoadMapButton.Location = new System.Drawing.Point(402, 140);
+            this.A41LoadMapButton.Name = "A41LoadMapButton";
+            this.A41LoadMapButton.Size = new System.Drawing.Size(65, 23);
+            this.A41LoadMapButton.TabIndex = 18;
+            this.A41LoadMapButton.Text = "载入地图";
+            this.A41LoadMapButton.UseVisualStyleBackColor = true;
             // 
             // groupBox18
             // 
-            this.groupBox18.Controls.Add(this.treeView1);
+            this.groupBox18.Controls.Add(this.A41CarGroup);
             this.groupBox18.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox18.Font = new System.Drawing.Font("宋体", 12F);
             this.groupBox18.Location = new System.Drawing.Point(587, 0);
@@ -1752,16 +1754,16 @@
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "列表";
             // 
-            // treeView1
+            // A41CarGroup
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("宋体", 12F);
-            this.treeView1.Location = new System.Drawing.Point(3, 22);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowPlusMinus = false;
-            this.treeView1.Size = new System.Drawing.Size(177, 310);
-            this.treeView1.TabIndex = 4;
+            this.A41CarGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.A41CarGroup.Font = new System.Drawing.Font("宋体", 12F);
+            this.A41CarGroup.Location = new System.Drawing.Point(3, 22);
+            this.A41CarGroup.Name = "A41CarGroup";
+            this.A41CarGroup.ShowLines = false;
+            this.A41CarGroup.ShowPlusMinus = false;
+            this.A41CarGroup.Size = new System.Drawing.Size(177, 310);
+            this.A41CarGroup.TabIndex = 4;
             // 
             // Form1
             // 
@@ -1940,29 +1942,29 @@
         private System.Windows.Forms.Button A21ConfigPrint;
         private System.Windows.Forms.CheckBox A13TSMode;
         private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.TextBox NodePosText;
+        private System.Windows.Forms.TextBox A41NodePosText;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button MoreInfoButton;
-        private System.Windows.Forms.TextBox PowerText;
+        private System.Windows.Forms.Button A41MoreInfoButton;
+        private System.Windows.Forms.TextBox A41PowerText;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox StatusText;
+        private System.Windows.Forms.TextBox A41StatusText;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox A41CarPicture;
-        private System.Windows.Forms.TextBox IDText;
+        private System.Windows.Forms.TextBox A41IDText;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.PictureBox A41MapBox;
         private System.Windows.Forms.CheckBox randomTest;
-        private System.Windows.Forms.ProgressBar UDProgress;
-        private System.Windows.Forms.TreeView PathFlagTree;
-        private System.Windows.Forms.Button DownloadMap;
-        private System.Windows.Forms.Button UploadMap;
-        private System.Windows.Forms.Button gotoNodeButton;
-        private System.Windows.Forms.Button SearchMapButton;
-        private System.Windows.Forms.Button SaveMapButton;
-        private System.Windows.Forms.Button LoadMapButton;
+        private System.Windows.Forms.ProgressBar A41UDProgress;
+        private System.Windows.Forms.TreeView A41PathFlagTree;
+        private System.Windows.Forms.Button A41DownloadMap;
+        private System.Windows.Forms.Button A41UploadMap;
+        private System.Windows.Forms.Button A41gotoNodeButton;
+        private System.Windows.Forms.Button A41SearchMapButton;
+        private System.Windows.Forms.Button A41SaveMapButton;
+        private System.Windows.Forms.Button A41LoadMapButton;
         private System.Windows.Forms.GroupBox groupBox18;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView A41CarGroup;
     }
 }
 
